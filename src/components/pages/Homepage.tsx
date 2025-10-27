@@ -25,11 +25,13 @@ const Homepage = () => {
 
         <SponsorCTA />
 
-        <FAQ />
+        
 
         {/* <AttendeeCardGenerator /> */}
 
         <Gif />
+
+        <FAQ />
 
         <Footer />
 
