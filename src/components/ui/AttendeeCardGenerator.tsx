@@ -213,6 +213,7 @@ const AttendeeCardGenerator = () => {
                                                 alt='Preview'
                                                 fill
                                                 className='object-cover'
+                                                unoptimized
                                             />
                                         </div>
                                         <p className='text-xs sm:text-sm text-gray-600'>Image uploaded successfully!</p>

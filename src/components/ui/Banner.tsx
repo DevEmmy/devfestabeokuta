@@ -122,6 +122,7 @@ const Banner = () => {
             width={1000} 
             height={1000} 
             className='block absolute bottom-20 left-[0px] -translate-x-1/2 w-[300px] xl:w-[400px]' 
+            unoptimized
           />
         </motion.div>
 
@@ -135,6 +136,7 @@ const Banner = () => {
             width={1000} 
             height={1000} 
             className=' absolute -bottom-[60px] -left-[30px] w-[300px] xl:w-[400px] z-10' 
+            unoptimized
           />
         </motion.div>
     </motion.div>

@@ -51,42 +51,42 @@ const PastEventsGallery = () => {
   const galleryImages = [
     {
       id: 1,
-      src: '/./past1.JPG',
+      src: '/./past1.jpg',
       alt: 'DevFest Abeokuta 2024 - Networking Session',
       title: 'Keynote Session',
       year: '2022'
     },
     {
       id: 2,
-      src: '/./past2.JPG',
+      src: '/./past2.jpg',
       alt: 'DevFest Abeokuta 2024 - Workshop',
       title: 'Keynote Session',
       year: '2022'
     },
     {
       id: 3,
-      src: '/./past3.JPG',
+      src: '/./past3.jpg',
       alt: 'DevFest Abeokuta 2024 - Keynote',
       title: 'Interactive Session',
       year: '2022'
     },
     {
       id: 4,
-      src: '/./past4.JPG',
+      src: '/./past4.jpg',
       alt: 'DevFest Abeokuta 2023 - Panel Discussion',
       title: 'Networking Session',
       year: '2022'
     },
     {
       id: 5,
-      src: '/./past5.JPG',
+      src: '/./past5.jpg',
       alt: 'DevFest Abeokuta 2023 - Hackathon',
       title: 'Event Banner',
       year: '2022'
     },
     {
       id: 6,
-      src: '/./past6.JPG',
+      src: '/./past6.jpg',
       alt: 'DevFest Abeokuta 2023 - Community',
       title: 'Event Registration',
       year: '2022'

@@ -47,6 +47,7 @@ const NavBar = () => {
           width={1000} 
           height={1000} 
           className='w-[120px] sm:w-[150px]' 
+          unoptimized
         />
       </motion.div>
 
