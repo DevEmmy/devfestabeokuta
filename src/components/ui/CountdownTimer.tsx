@@ -65,7 +65,7 @@ const CountdownTimer = () => {
           videoLoaded ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <source src='/DevFest.mp4' type='video/mp4' />
+        <source src='/./DevFest.mp4' type='video/mp4' />
       </video>
       
       {/* Fallback background while video loads */}
