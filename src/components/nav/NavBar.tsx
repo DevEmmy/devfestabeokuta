@@ -31,7 +31,7 @@ const NavBar = () => {
 
   return (
     <motion.nav 
-      className='flex justify-between items-center px-4 sm:px-6 lg:px-10 py-4 sm:py-5 bg-white/20 backdrop-blur-sm fixed top-0 left-0 right-0 z-50'
+      className='flex justify-between px-5 sm:px-6 lg:px-[12rem]  max-md:bg-white/20 max-md:backdrop-blur-sm  max-w-[150rem] mx-auto items-center py-4 sm:py-5 fixed top-0 md:top-10 left-0 right-0 z-50'
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -40,6 +40,7 @@ const NavBar = () => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
+        // className='bg-white/20 backdrop-blur-sm '
       >
         <Image 
           src='/./devfest-abklogo.png' 
@@ -52,13 +53,14 @@ const NavBar = () => {
       </motion.div>
 
       {/* Desktop Navigation */}
-      <div className='hidden lg:flex gap-6 xl:gap-10 items-center'>
+      <div className='hidden lg:flex gap-6 xl:gap-10 items-center pr-3 pl-7 py-3 rounded-4xl bg-white/40 backdrop-blur-sm'>
         {nav.map((item, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+            
           >
             <Link 
               href={item.link} 
@@ -74,7 +76,7 @@ const NavBar = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <GetTicketButton />
+          <GetTicketButton style='px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 border-4 border-[#ea4335] [#c3ecf6]' />
         </motion.div>
       </div>
 
@@ -126,7 +128,7 @@ const NavBar = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: nav.length * 0.1 }}
               >
-                <GetTicketButton />
+                <GetTicketButton style='px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 border border-[] '/>
               </motion.div>
             </div>
           </motion.div>

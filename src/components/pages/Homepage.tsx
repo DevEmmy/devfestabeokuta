@@ -10,30 +10,44 @@ import AttendeeCardGenerator from '../ui/AttendeeCardGenerator'
 import Footer from '../ui/Footer'
 import Gif from '../ui/Gif'
 
+
+import Image from 'next/image'
+
 const Homepage = () => {
   return (
-    <main>
-        <NavBar />
+    <main className=''>
 
-        <Banner />
 
-        <CountdownTimer />
+      {/* <Banner /> */}
 
-        <PastEventsGallery />
 
-        <Agenda />
+      {/* <NavBar /> */}
+      <Banner />
 
-        <SponsorCTA />
+      <CountdownTimer />
 
-        
 
-        {/* <AttendeeCardGenerator /> */}
 
-        <Gif />
 
-        <FAQ />
 
-        <Footer />
+
+      <PastEventsGallery />
+
+      <Agenda />
+
+
+
+      <SponsorCTA />
+
+
+
+      {/* <AttendeeCardGenerator /> */}
+
+      <Gif />
+
+      <FAQ />
+
+      <Footer />
 
     </main>
   )

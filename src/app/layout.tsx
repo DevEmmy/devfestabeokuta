@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Manrope } from "next/font/google";
 import "./globals.css";
 
+
+
 const Bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-bricolage",
@@ -35,6 +37,7 @@ export default function RootLayout({
       <body
         className={`${Bricolage.variable} ${manrope.className} antialiased`}
       >
+        {/* <InvertedCursor /> */}
         {children}
       </body>
     </html>

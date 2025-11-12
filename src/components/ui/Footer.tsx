@@ -10,10 +10,18 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className='bg-[#1e1e1e] text-white py-8 sm:py-12 px-4 border-t-2 border-black'>
-      <div className='max-w-7xl mx-auto'>
+    <footer className='bg-[#1e1e1e] text-white  border-t-6 border-[#34A853]'>
+      <Image
+        src='/./divider.svg'
+        alt='banner'
+        width={1000}
+        height={1000}
+        className='w-full'
+        unoptimized
+      />
+      <div className='general-space pt-20 pb-14'>
         {/* Main Footer Content */}
-        <motion.div 
+        <motion.div
           className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8'
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -22,29 +30,29 @@ const Footer = () => {
         >
           {/* Brand Section */}
           <div className='sm:col-span-2 lg:col-span-2'>
-            <motion.div 
+            <motion.div
               className='mb-3 sm:mb-4'
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <Image 
-                src='/./DevFest.png' 
-                alt='DevFest Logo' 
-                width={150} 
-                height={60} 
+              <Image
+                src='/./DevFest.png'
+                alt='DevFest Logo'
+                width={150}
+                height={60}
                 className='h-10 sm:h-12 w-auto'
                 unoptimized
               />
             </motion.div>
             <h3 className='text-xl sm:text-2xl font-bold mb-2 sm:mb-3'>DevFest Abeokuta '25</h3>
             <p className='text-sm sm:text-base text-gray-300 mb-3 sm:mb-4 max-w-md'>
-              Join us on December 6th, 2025 for the biggest tech event in Abeokuta. 
+              Join us on December 6th, 2025 for the biggest tech event in Abeokuta.
               Learn, network, and grow with the developer community.
             </p>
             <p className='text-xs sm:text-sm text-gray-400'>
-            June 12 Event Center, Kuto, Abeokuta.
+              June 12 Event Center, Kuto, Abeokuta.
             </p>
           </div>
 
@@ -100,7 +108,7 @@ const Footer = () => {
         </motion.div>
 
         {/* Social Media */}
-        <motion.div 
+        <motion.div
           className='border-t border-gray-700 pt-6 sm:pt-8 mb-6 sm:mb-8'
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -124,9 +132,9 @@ const Footer = () => {
                 whileHover={{ scale: 1.2, rotate: 360 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <Link 
-                  href={social.href} 
-                  target='_blank' 
+                <Link
+                  href={social.href}
+                  target='_blank'
                   rel='noopener noreferrer'
                   className='bg-white/10 hover:bg-white/20 border-2 border-white/30 rounded-full p-2 flex items-center justify-center sm:p-3 transition-all duration-300'
                   aria-label={social.label}
@@ -139,7 +147,7 @@ const Footer = () => {
         </motion.div>
 
         {/* Bottom Bar */}
-        <motion.div 
+        <motion.div
           className='border-t border-gray-700 pt-6 sm:pt-8'
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -150,10 +158,18 @@ const Footer = () => {
             <p className='text-gray-400 text-xs sm:text-sm text-center sm:text-left'>
               © {currentYear} DevFest Abeokuta. All Rights Reserved.
             </p>
-           
+
           </div>
         </motion.div>
       </div>
+      {/* <Image
+        src='/./divider.svg'
+        alt='banner'
+        width={1000}
+        height={1000}
+        className='w-full rotate-180'
+        unoptimized
+      /> */}
     </footer>
   )
 }

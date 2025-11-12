@@ -46,7 +46,7 @@ const CountdownTimer = () => {
 
   return (
     <motion.div 
-      className='flex flex-col items-center h-[90vh] z-20 relative justify-center gap-6 sm:gap-8 py-16 sm:py-20 px-4 overflow-hidden'
+      className=' md:m-10 flex md:rounded-t-4xl rounded-b-[7rem] md:rounded-b-[9rem] flex-col items-center h-[90vh] z-20 relative justify-center gap-6 sm:gap-8 py-16 sm:py-20 px-4 overflow-hidden'
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -183,11 +183,10 @@ const CountdownTimer = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.7 }}
       >
-        <GetTicketButton style='border-2 border-white ' />
+        <GetTicketButton style='px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-[#F6b51e] border border-white' />
       </motion.div>
     </motion.div>
   )
 }
 
 export default CountdownTimer
-

@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ccf6c5;
+  --background: #1e1e1e;
+   /* #ccf6c5; */
   --foreground: #171717;
   --font-bricolage: var(--font-bricolage);
   --font-manrope: var(--font-manrope);
@@ -17,6 +18,7 @@ body{
 html, body {
   max-width: 100%;
   overflow-x: hidden;
+  @apply cursor-none
 }
 
 /* Prevent images from causing overflow */
@@ -38,6 +40,11 @@ h1, h2, h3, h4, h5, h6 {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+.general-space {
+  @apply px-5 sm:px-6 lg:px-[12rem] lg:py-20 max-w-[150rem] mx-auto ;
+}
+
 
 /* Mobile-specific improvements */
 @media (max-width: 640px) {

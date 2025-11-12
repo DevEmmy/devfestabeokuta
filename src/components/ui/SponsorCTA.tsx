@@ -4,10 +4,25 @@ import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
+import Image from 'next/image'
+
 const SponsorCTA = () => {
   return (
-    <section className="py-16 sm:py-20 px-4 bg-white">
-      <div className="">
+    <section className="  bg-[#fcf4f4] p-5 md:p-10 ">
+       
+
+      <div className="py-1 bg-[#ffe7a5] rounded-4xl [#c3ecf6]  border-y-12  border-[#f6b51e] [#4285f4] [#ffe7a5]  ">
+              {/* <Image 
+                                  src='/./divider.svg' 
+                                  alt='banner' 
+                                  width={1000} 
+                                  height={1000} 
+                                  className='w-full' 
+                                  unoptimized
+                                /> */}
+
+    <div className='py-16 sm:py-20'>
+      <div className=" general-space">
         <motion.div 
           className=" p-4 md:p-12 text-center "
           initial={{ opacity: 0, y: 30 }}
@@ -39,6 +54,20 @@ const SponsorCTA = () => {
           </motion.div>
         </motion.div>
       </div>
+
+    </div>
+      
+
+      {/* <Image 
+  src='/./divider.svg' 
+  alt='banner' 
+  width={1000} 
+  height={1000} 
+  className='w-full rotate-180' 
+  unoptimized
+/> */}
+      </div>
+
     </section>
   )
 }

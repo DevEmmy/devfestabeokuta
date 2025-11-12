@@ -94,10 +94,12 @@ const PastEventsGallery = () => {
   ]
 
   return (
-    <div className='py-16 sm:py-20 px-4 bg-[#1e1e1e]'>
-      <div className='max-w-7xl mx-auto'>
+    <section className="bg-[#fcf4f4]">
+      <div className='py-16 sm:py-20 px-4 bg-[#1e1e1e] rounded-b-[7rem]  md:rounded-b-[9rem]'>
+      <div className='general-space mx-auto mt-16'>
         {/* Section Header */}
-        <motion.div 
+       <div className="flex items-center justify-between">
+         <motion.div 
           className='text-center mb-8 sm:mb-12 text-white'
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -112,6 +114,11 @@ const PastEventsGallery = () => {
             From inspiring talks to networking sessions, see what makes our community special.
           </p>
         </motion.div>
+
+        <div className=''>
+          <Image src={'curl-icon.svg'} alt='curl' width={200} height={100} className='h-28 rotate-90' />
+        </div>
+       </div>
 
         {/* Gallery Container with Blur Edges */}
         <div className='relative'>
@@ -205,6 +212,7 @@ const PastEventsGallery = () => {
         </motion.div>
       </div>
     </div>
+    </section>
   )
 }
 

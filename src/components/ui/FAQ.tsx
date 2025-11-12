@@ -3,6 +3,8 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+import Image from 'next/image'
+
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
@@ -46,10 +48,10 @@ const FAQ = () => {
   }
 
   return (
-    <section id="faq" className="py-16 sm:py-20 px-4 bg-[#f0f0f0]">
-      <div className="max-w-7xl mx-auto">
+    <section id="faq" className="py-16 sm:py-20 px-4 min-h-screen">
+      <div className="bg-[#f0f0f0] border-12 border-[#4285f4] [#f6b51e] max-w-4xl w-full p-8 rounded-4xl mx-auto relative ">
         <motion.div 
-          className="text-center mb-12"
+          className="text-center my-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -64,7 +66,7 @@ const FAQ = () => {
         </motion.div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {faqs.splice(0,5).map((faq, index) => (
             <motion.div
               key={index}
               className="bg-white rounded-xl border-2 border-black overflow-hidden"
@@ -133,6 +135,8 @@ const FAQ = () => {
             </svg>
           </a>
         </div>
+
+        <Image src={'community.svg'} width={200} height={100} alt='community' className='absolute -left-16 -top-16' />
       </div>
     </section>
   )
