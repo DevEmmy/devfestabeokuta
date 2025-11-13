@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import GetTicketButton from './GetTicketButton'
 import Image from 'next/image'
 import { gsap } from 'gsap'
-import { section } from 'framer-motion/client'
+import DoodleRain from './DoodleRain'
 
 const Banner = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -92,6 +92,15 @@ const Banner = () => {
 
       // Lanyard shrink and fast spin animation at intervals
 
+      gsap.to(lanyardRef.current, {
+      scaleY: 0.8,       // shrink vertically
+      rotation: -5,     // fast spin
+      duration: 3.5,
+      ease: "power1.inOut",
+      yoyo: true,
+      repeat: -1
+    });
+
     }, containerRef)
 
     return () => ctx.revert() // Cleanup
@@ -123,18 +132,23 @@ const Banner = () => {
     })
   }
 
+
   return (
     <section className='  md:p-10 h-[100vh]'>
+
+
+
+
       <div
         ref={containerRef}
-        className='  bg-[#f8d8d8] [#ffe7a5] [c3ecf6]  [#ccf6c5] md:rounded-4xl [#ccf6c5] h-full relative flex general-space flex-col items-center justify-center gap-7 sm:gap-5 px-4 sm:px-6 lg:px-8 opacity-0'
+        className='  bg-[#ccf6c5] [#f8d8d8] [#ffe7a5] [c3ecf6]  [#ccf6c5] relative md:rounded-4xl h-full flex general-space flex-col items-center justify-center gap-7 sm:gap-5 px-4 sm:px-6 lg:px-8 opacity-0'
       >
 
-
+        <DoodleRain />
 
 
         <div className='z-99 flex flex-col items-center justify-center gap-7'>
-          <div ref={lanyardRef}>
+          <div ref={lanyardRef} className='mb-6'>
             <Image
               src='https://devfestilorin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flanyard.d957882b.png&w=3840&q=75'
               unoptimized
@@ -147,14 +161,21 @@ const Banner = () => {
 
           <h1
             ref={titleRef}
-            className='z-99 text-4xl sm:text-5xl md:text-6xl lg:text-[78px] leading-tight sm:leading-[40px] font-bold text-center'
+            className='z-99 text-4xl flex items-center gap-2 sm:text-5xl md:text-6xl lg:text-[78px] leading-tight sm:leading-[40px] font-bold text-center'
           >
-            Devfest Abeokuta '25
+            <Image
+              src='/./dgc-lockup.png'
+              alt='DevFest Logo'
+              width={100}
+              height={60}
+              className='h-7 sm:h-12 w-auto'
+              unoptimized
+            /> <span className='text-gray-900'>Devfest Abeokuta '25</span>
           </h1>
 
           <p
             ref={descriptionRef}
-            className='text-sm mt-2 sm:text-base lg:text-[18px] w-full sm:w-4/5 lg:w-2/3 text-center max-w-4xl'
+            className='text-sm mt-2 sm:text-base lg:text-[18px] w-full sm:w-4/5 lg:w-2/3 text-center max-w-4xl text-gray-600'
           >
             Devfest Abeokuta is a one-day event that brings together developers, designers, and entrepreneurs to learn, share, and grow together on December 6th, 2025.
           </p>
@@ -163,7 +184,7 @@ const Banner = () => {
             ref={buttonsRef}
             className='flex justify-center  items-center gap-3 sm:gap-4 w-full sm:w-auto'
           >
-            <GetTicketButton />
+            <GetTicketButton isIcon />
 
             <button
               className='bg-white border border-black text-black px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full flex items-center gap-2 text-sm sm:text-base w-fit sm:w-auto justify-center'
@@ -200,6 +221,18 @@ const Banner = () => {
           />
         </div>
 
+
+        {/* <div ref={s3Ref} className='absolute bottom-2 right-[30px] z-10'>
+          <Image
+            src='/./dgc-lockup.png'
+            alt='banner'
+            width={100}
+            height={100}
+            className='w-[100px]'
+            unoptimized
+          />
+        </div> */}
+
         {/* <Image
         src="wave-bg.svg"
         alt="banner"
@@ -208,7 +241,7 @@ const Banner = () => {
         unoptimized
       /> */}
 
-        {/* <Image
+        {/* <Imageref={s3Ref}
           src='lane.svg'
           alt='banner'
           width={1000}
@@ -217,22 +250,36 @@ const Banner = () => {
           unoptimized
         /> */}
 
+        {/* <DoodleRain /> */}
 
 
-        <div className='flex gap-24  p-4 absolute left-7 -top-16'>
-          <div className='bg-[#f8d8d8] h-40 w-2.5 rotate-y-6 ' />
-          <div className='bg-[#f8d8d8] h-40 w-2.5 ' />
-          <div className='bg-[#f8d8d8] h-40 w-2.5 -rotate-x-3' />
+
+        <div className='flex gap-20  p-4 absolute left-28 -top-16' ref={hashRef}>
+          <div className='bg-red-400 [#f8d8d8] h-40 w-3 rotate-y-6 rounded-2xl ' />
+          <div className='bg-[#f8d8d8] h-26 w-3  rounded-2xl' />
+          <div className='bg-blue-400 rounded-2xl [#f8d8d8] h-40 w-3 -rotate-x-3' />
         </div>
 
-        <div className='flex gap-24  p-4 absolute right-7 -bottom-16'>
+        <div className='flex items-baseline gap-20  p-4 absolute right-28 -bottom-16' ref={s3Ref}>
+          <div className='bg-green-400 rounded-2xl [#f8d8d8] h-40 w-3 rotate-y-12 ' />
+          <div className='bg-purple-400 rounded-2xl -[#f8d8d8] h-26 w-3 ' />
+          <div className='bg-rose-400 rounded-2xl -[#f8d8d8] h-40 w-3 -rotate-x-3' />
+        </div>
+
+        <div className='flex flex-col gap-3  p-4 md:absolute -right-16 max-md:hidden '>
+          <div className='b-[#f8d8d8] border-5 border-[#1e1e1e] bg-[#ffe7a5]  w-40 h-10 rotate-y-6  rounded-tl-4xl' />
+          <div className='b-[#f8d8d8] border-5 border-[#1e1e1e] bg-[#c3ecf6]  w-40 h-10  ' />
+          <div className='b-[#f8d8d8] border-5 border-[#1e1e1e] bg-[#ccf6c5] w-40 h-10 rounded-bl-4xl -rotate-x-3' />
+        </div>
+
+        {/* <div className='flex gap-24  p-4 absolute right-7 -top-16'>
           <div className='bg-[#f8d8d8] h-40 w-2.5 rotate-y-12 ' />
           <div className='bg-[#f8d8d8] h-40 w-2.5 ' />
           <div className='bg-[#f8d8d8] h-40 w-2.5 -rotate-x-3' />
-        </div>
+        </div> */}
 
 
-        
+
 
       </div>
     </section>

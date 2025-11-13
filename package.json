@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "dom-to-image-more": "^3.7.1",
     "framer-motion": "^12.23.24",
     "gsap": "^3.13.0",

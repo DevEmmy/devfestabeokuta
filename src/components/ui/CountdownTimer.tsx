@@ -11,7 +11,7 @@ const CountdownTimer = () => {
     minutes: 0,
     seconds: 0
   })
-  
+
   const [videoLoaded, setVideoLoaded] = useState(true)
   const [videoError, setVideoError] = useState(false)
 
@@ -45,7 +45,7 @@ const CountdownTimer = () => {
   }, [])
 
   return (
-    <motion.div 
+    <motion.div
       className=' md:m-10 flex md:rounded-t-4xl rounded-b-[7rem] md:rounded-b-[9rem] flex-col items-center h-[90vh] z-20 relative justify-center gap-6 sm:gap-8 py-16 sm:py-20 px-4 overflow-hidden'
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -61,27 +61,26 @@ const CountdownTimer = () => {
         preload='metadata'
         onLoadedData={() => setVideoLoaded(true)}
         onError={() => setVideoError(true)}
-        className={`absolute inset-0 w-full h-full object-cover z-[-2] transition-opacity duration-500 ${
-          videoLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`absolute inset-0 w-full h-full object-cover z-[-2] transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
       >
         <source src='/./devfest.mp4' type='video/mp4' />
       </video>
-      
+
       {/* Fallback background while video loads */}
       {!videoLoaded && !videoError && (
         <div className='absolute inset-0  z-[-2]'></div>
       )}
-      
+
       {/* Error fallback */}
       {videoError && (
         <div className='absolute inset-0 z-[-2]'></div>
       )}
-      
+
       {/* Black Overlay */}
       <div className='absolute inset-0 bg-black/50 z-[-1]'></div>
-      
-      <motion.h2 
+
+      <motion.h2
         className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white px-4'
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -90,18 +89,20 @@ const CountdownTimer = () => {
       >
         Count Every Second Until the Event
       </motion.h2>
-      
+
       <div className='grid grid-cols-2 lg:flex gap-3 sm:gap-4 md:gap-6 w-full max-w-4xl'>
         {/* Days */}
-        <motion.div 
-          className='bg-white/80 backdrop-blur-sm border-2 border-black rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-lg flex-1'
+
+        {/* ${index == 0 ? 'bg-[#FFE7A5] rounded-l-4xl' : index == 1 ? 'bg-[#C3ECF6]' : index == 2 ? 'bg-[#F8D8D8]' : 'bg-[#CCF6C5] rounded-r-4xl'} */}
+        <motion.div
+          className='bg-[#FFE7A5] backdrop-blur-sm border-2 border-black rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-lg flex-1'
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
           whileHover={{ scale: 1.05 }}
         >
-          <motion.div 
+          <motion.div
             className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-1 sm:mb-2'
             key={timeLeft.days}
             initial={{ scale: 1.2 }}
@@ -114,16 +115,16 @@ const CountdownTimer = () => {
         </motion.div>
 
         {/* Hours */}
-        <motion.div 
-          className='bg-white/80 backdrop-blur-sm border-2 border-black rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-lg flex-1'
+        <motion.div
+          className='bg-[#C3ECF6] border-4 border-black relative [#ffe7a5] [c3ecf6]  [#ccf6c5] white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-lg flex-1'
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
           whileHover={{ scale: 1.05 }}
         >
-          <motion.div 
-            className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-1 sm:mb-2'
+          <motion.div
+            className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-mono mb-1 sm:mb-2 text-[#1e1e1e]'
             key={timeLeft.hours}
             initial={{ scale: 1.2 }}
             animate={{ scale: 1 }}
@@ -135,15 +136,15 @@ const CountdownTimer = () => {
         </motion.div>
 
         {/* Minutes */}
-        <motion.div 
-          className='bg-white/80 backdrop-blur-sm border-2 border-black rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-lg flex-1'
+        <motion.div
+          className='bg-[#F8D8D8] backdrop-blur-sm border-2 border-black rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-lg flex-1'
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
           whileHover={{ scale: 1.05 }}
         >
-          <motion.div 
+          <motion.div
             className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-1 sm:mb-2'
             key={timeLeft.minutes}
             initial={{ scale: 1.2 }}
@@ -156,15 +157,15 @@ const CountdownTimer = () => {
         </motion.div>
 
         {/* Seconds */}
-        <motion.div 
-          className='bg-white/80 backdrop-blur-sm border-2 border-black rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-lg flex-1'
+        <motion.div
+          className='bg-[#CCF6C5] backdrop-blur-sm border-2 border-black rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-lg flex-1'
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.6 }}
           whileHover={{ scale: 1.05 }}
         >
-          <motion.div 
+          <motion.div
             className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-1 sm:mb-2'
             key={timeLeft.seconds}
             initial={{ scale: 1.2 }}
@@ -182,8 +183,9 @@ const CountdownTimer = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.7 }}
+        className='mt-9'
       >
-        <GetTicketButton style='px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-[#F6b51e] border border-white' />
+        <GetTicketButton style='px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-[#F6b51e] border-6 border-inset border-[#FFE7A5] [#f0f0f0]' />
       </motion.div>
     </motion.div>
   )

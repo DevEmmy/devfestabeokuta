@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import GetTicketButton from '../ui/GetTicketButton'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -28,10 +28,27 @@ const NavBar = () => {
       link: "/#speakers"
     }
   ]
+    const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (imageRef.current) {
+        imageRef.current?.classList.add("hidden");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
 
   return (
     <motion.nav 
-      className='flex justify-between px-5 sm:px-6 lg:px-[12rem]  max-md:bg-white/20 max-md:backdrop-blur-sm  max-w-[150rem] mx-auto items-center py-4 sm:py-5 fixed top-0 md:top-10 left-0 right-0 z-50'
+      className='flex justify-between px-5 sm:px-6 2xl:px-[12rem] max-md:bg-white/20 max-md:backdrop-blur-sm  max-w-[150rem] mx-auto items-center py-4 sm:py-5 fixed top-0 md:top-10 left-0 right-0 z-50'
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -49,11 +66,12 @@ const NavBar = () => {
           height={1000} 
           className='w-[120px] sm:w-[150px]' 
           unoptimized
+          ref={imageRef}
         />
       </motion.div>
 
       {/* Desktop Navigation */}
-      <div className='hidden lg:flex gap-6 xl:gap-10 items-center pr-3 pl-7 py-3 rounded-4xl bg-white/40 backdrop-blur-sm'>
+      <div className='hidden md:flex gap-6 xl:gap-10 items-center pr-3 pl-7 py-3 rounded-4xl bg-white/40 backdrop-blur-sm'>
         {nav.map((item, index) => (
           <motion.div
             key={index}
@@ -71,6 +89,8 @@ const NavBar = () => {
             </Link>
           </motion.div>
         ))}
+
+        
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -83,7 +103,7 @@ const NavBar = () => {
       {/* Mobile Menu Button */}
       <motion.button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className='lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors'
+        className='md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors'
         aria-label='Toggle menu'
         whileTap={{ scale: 0.9 }}
       >

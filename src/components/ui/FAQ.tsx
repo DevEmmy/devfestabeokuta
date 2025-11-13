@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import Image from 'next/image'
+import OrbitalAnimation from './OrbitalAnimation'
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
@@ -48,9 +49,23 @@ const FAQ = () => {
   }
 
   return (
-    <section id="faq" className="py-16 sm:py-20 px-4 min-h-screen">
-      <div className="bg-[#f0f0f0] border-12 border-[#4285f4] [#f6b51e] max-w-4xl w-full p-8 rounded-4xl mx-auto relative ">
-        <motion.div 
+    <section id="faq" className="py-56 px-4 min-h-screen relative bg -[#ffe7a5]">
+
+      <div className='general-space '>
+        <div className="flex items-start justify-between">
+          <div className='max-w-xl relative mb-24 flex flex-col gap-8 z-[99]'>
+            <h3 className='text-6xl font-medium leading-20 text-white [#ffe7a5] -white'>Stay Connected with GDG Abeokuta</h3>
+            <p className='text-[#fffcfc]'>
+              Discover our latest activities, events, and webinars. Be the first to get updates on everything happening in the GDG Lagos community.
+            </p>
+          </div>
+
+          <OrbitalAnimation />
+        </div>
+      </div>
+
+      <div className="bg-[#f0f0f0]  border-12 border-[#4285f4] [#f6b51e] max-w-3xl w-full  p-8 rounded-4xl mx-auto relative ">
+        <motion.div
           className="text-center my-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -58,7 +73,7 @@ const FAQ = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-black">
-            Frequently Asked Questions
+            Got Questions? We’ve Got Answers!
           </h2>
           <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto">
             Have questions? We've got answers. Find everything you need to know about DevFest Abeokuta 2025.
@@ -66,7 +81,7 @@ const FAQ = () => {
         </motion.div>
 
         <div className="space-y-4">
-          {faqs.splice(0,5).map((faq, index) => (
+          {faqs.splice(0, 5).map((faq, index) => (
             <motion.div
               key={index}
               className="bg-white rounded-xl border-2 border-black overflow-hidden"
@@ -98,7 +113,7 @@ const FAQ = () => {
                   />
                 </motion.svg>
               </button>
-              
+
               <AnimatePresence>
                 {openIndex === index && (
                   <motion.div
@@ -136,7 +151,7 @@ const FAQ = () => {
           </a>
         </div>
 
-        <Image src={'community.svg'} width={200} height={100} alt='community' className='absolute -left-16 -top-16' />
+        <Image src={'community.svg'} width={200} height={100} alt='community' className='absolute right-0 md:-left-29 -top-20' />
       </div>
     </section>
   )

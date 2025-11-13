@@ -12,6 +12,7 @@ import Gif from '../ui/Gif'
 
 
 import Image from 'next/image'
+import Speaker from '../ui/Speaker'
 
 const Homepage = () => {
   return (
@@ -34,6 +35,8 @@ const Homepage = () => {
       <PastEventsGallery />
 
       <Agenda />
+
+      <Speaker />
 
 
 

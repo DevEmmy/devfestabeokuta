@@ -3,7 +3,6 @@ import { Bricolage_Grotesque, Manrope } from "next/font/google";
 import "./globals.css";
 
 
-
 const Bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-bricolage",

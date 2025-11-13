@@ -27,7 +27,7 @@ const InvertedCursor = () => {
       width={100}
       height={100}
       ref={cursorRef}
-      className="pointer-events-none fixed top-0 left-0  w-7 h-7  z-[9999999] "
+      className=" fixed pointer-events-auto left-0  w-7 h-7  z-[9999999] "
       style={{
         // backdropFilter: "invert(1)",
         // WebkitBackdropFilter: "invert(1)",
