@@ -93,13 +93,13 @@ const Banner = () => {
       // Lanyard shrink and fast spin animation at intervals
 
       gsap.to(lanyardRef.current, {
-      scaleY: 0.8,       // shrink vertically
-      rotation: -5,     // fast spin
-      duration: 3.5,
-      ease: "power1.inOut",
-      yoyo: true,
-      repeat: -1
-    });
+        scaleY: 0.8,       // shrink vertically
+        rotation: -5,     // fast spin
+        duration: 3.5,
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: -1
+      });
 
     }, containerRef)
 
@@ -133,6 +133,41 @@ const Banner = () => {
   }
 
 
+  // Pattern 1: Circuit Board
+  const CIRCUIT_PATTERN =
+    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-4v-1h4v-4h1v4zM0 95h4v1H0v4H-1v-4H-4v-1h4v-4H-1v4zM0 5h4v1H0v4H-1V5H-4V4h4V0H-1v4zM96 5h4v1h-4v4h-1V5h-4V4h4V0h1v4z'/%3E%3Cpath d='M96 4h1v1h-1V4zM0 4h1v1H0V4zM0 99h1v1H0v-1zM96 99h1v1h-1v-1z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")";
+
+  // Pattern 2: Binary Code
+  const BINARY_PATTERN =
+    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Ctext x='0' y='15' fill='%23000000' fill-opacity='0.1' font-size='10' font-family='monospace'%3E0101010101%3C/text%3E%3Ctext x='0' y='30' fill='%23000000' fill-opacity='0.1' font-size='10' font-family='monospace'%3E1010101010%3C/text%3E%3Ctext x='0' y='45' fill='%23000000' fill-opacity='0.1' font-size='10' font-family='monospace'%3E0011001100%3C/text%3E%3C/svg%3E\")";
+
+  // Pattern 3: Plus Grid
+  const PLUS_PATTERN =
+    "url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M10 0v20M0 10h20'/%3E%3C/g%3E%3C/svg%3E\")";
+
+
+  const spotlightRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: any) => {
+    if (!spotlightRef.current) return;
+
+    // Get the mouse position relative to the card
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Apply the spotlight effect
+    spotlightRef.current.style.background = `radial-gradient(300px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.15) 0%, transparent 100%)`;
+    spotlightRef.current.style.opacity = '1';
+  };
+
+  const handleMouseLeave = () => {
+    if (!spotlightRef.current) return;
+
+    // Fade the spotlight out
+    spotlightRef.current.style.opacity = '0';
+  };
+
   return (
     <section className='  md:p-10 h-[100vh]'>
 
@@ -145,6 +180,50 @@ const Banner = () => {
       >
 
         <DoodleRain />
+
+        <div
+          className="absolute inset-0 opacity-100"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm-9-2v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm-7-16v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM16 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM16 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM36 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM36 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+            backgroundPosition: "center",
+          }} />
+
+
+        {/* --- BACKGROUND LAYER 2: Circuit Pattern (Subtle) --- */}
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: CIRCUIT_PATTERN,
+            backgroundSize: "100px 100px",
+          }}
+        ></div>
+
+        {/* --- BACKGROUND LAYER 3: Binary Pattern (Offset) --- */}
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: BINARY_PATTERN,
+            backgroundSize: "75px 75px",
+            backgroundPosition: "25px 25px", // Offset to avoid overlap
+          }}
+        ></div>
+
+        {/* --- BACKGROUND LAYER 4: Plus Pattern (Smallest) --- */}
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: PLUS_PATTERN,
+            backgroundSize: "20px 20px",
+          }}
+        ></div>
+
+        {/* --- BACKGROUND LAYER 5: The Ripple/Spotlight Effect --- */}
+        <div
+          ref={spotlightRef}
+          className="absolute inset-0 z-10 opacity-0 transition-opacity duration-300 ease-out"
+        // Style is applied by JS
+        ></div>
 
 
         <div className='z-99 flex flex-col items-center justify-center gap-7'>
@@ -161,21 +240,32 @@ const Banner = () => {
 
           <h1
             ref={titleRef}
-            className='z-99 text-4xl flex items-center gap-2 sm:text-5xl md:text-6xl lg:text-[78px] leading-tight sm:leading-[40px] font-bold text-center'
+            className='z-99 relative text-4xl max-md:text-6xl flex items-center gap-2 sm:text-5xl md:text-6xl lg:text-[78px] leading-tight sm:leading-[40px] font-bold text-center'
           >
             <Image
               src='/./dgc-lockup.png'
               alt='DevFest Logo'
               width={100}
               height={60}
-              className='h-7 sm:h-12 w-auto'
+              className='h-7 sm:h-12 w-auto max-md:absolute max-md:-top-10 max-md:-right-20'
               unoptimized
             /> <span className='text-gray-900'>Devfest Abeokuta '25</span>
           </h1>
 
+          <div ref={lanyardRef} className='mb-6'>
+            <Image
+              src='https://devfestilorin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flanyard.d957882b.png&w=3840&q=75'
+              unoptimized
+              alt='banner'
+              width={1000}
+              height={1000}
+              className='h-[40px] sm:h-[50px] lg:h-[60px] w-auto md:hidden'
+            />
+          </div>
+
           <p
             ref={descriptionRef}
-            className='text-sm mt-2 sm:text-base lg:text-[18px] w-full sm:w-4/5 lg:w-2/3 text-center max-w-4xl text-gray-600'
+            className='text-sm max-md:text-lg mt-2 sm:text-base lg:text-[18px] w-full sm:w-4/5 lg:w-2/3 text-center max-w-4xl text-gray-600'
           >
             Devfest Abeokuta is a one-day event that brings together developers, designers, and entrepreneurs to learn, share, and grow together on December 6th, 2025.
           </p>
@@ -199,7 +289,7 @@ const Banner = () => {
 
 
         {/* Decorative Images */}
-        <div ref={hashRef} className='absolute bottom-20 left-[100px] -translate-x-1/2'>
+        <div ref={hashRef} className='md:absolute max-md:hidden bottom-20 left-[100px] -translate-x-1/2'>
           <Image
             src='/./hash.png'
             alt='banner'

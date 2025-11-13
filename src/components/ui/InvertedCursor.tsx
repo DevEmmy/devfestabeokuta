@@ -1,16 +1,20 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-
 import Image from "next/image";
 
 const InvertedCursor = () => {
-  const cursorRef = useRef(null);
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const move = (e : any) => {
+    // This is the size from your Tailwind class (w-7 = 1.75rem = 28px)
+    const cursorSize = 28;
+    const offset = cursorSize / 2;
+
+    const move = (e: any) => {
       gsap.to(cursorRef.current, {
-        x: e.clientX - 28, // offset for circle radius
-        y: e.clientY - 28,
+        // Center the cursor by subtracting half its size
+        x: e.clientX - offset,
+        y: e.clientY - offset,
         duration: 0.3,
         ease: "power3.out",
       });
@@ -21,18 +25,23 @@ const InvertedCursor = () => {
   }, []);
 
   return (
-    <Image
-      src={'/./default-cursor.svg'}
-      alt="cursor"
-      width={100}
-      height={100}
+    // This wrapper div gets the ref and all the positioning styles
+    <div
       ref={cursorRef}
-      className=" fixed pointer-events-auto left-0  w-7 h-7  z-[9999999] "
-      style={{
-        // backdropFilter: "invert(1)",
-        // WebkitBackdropFilter: "invert(1)",
-      }}
-    />
+      className="fixed top-0 left-0 w-7 h-7 z-[9999999] pointer-events-none"
+      //   ^^^
+      // 1. Added top-0 for consistency
+      // 2. CRITICAL: Changed to pointer-events-none
+      // 3. Kept your w-7 h-7 size
+    >
+      <Image
+        src={'/./default-cursor.svg'}
+        alt="cursor"
+        width={100} // These props are for optimization, not final size
+        height={100}
+        className="w-full h-full" // This makes the image fill the 28px div
+      />
+    </div>
   );
 };
 

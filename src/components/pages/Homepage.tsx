@@ -19,17 +19,16 @@ const Homepage = () => {
     <main className=''>
 
 
+
       {/* <Banner /> */}
 
 
       {/* <NavBar /> */}
       <Banner />
 
+
+
       <CountdownTimer />
-
-
-
-
 
 
       <PastEventsGallery />

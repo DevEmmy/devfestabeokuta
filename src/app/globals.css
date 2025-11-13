@@ -22,6 +22,11 @@ html, body {
   @apply cursor-none
 }
 
+
+button {
+  @apply cursor-none
+}
+
 /* Prevent images from causing overflow */
 img {
   max-width: 100%;

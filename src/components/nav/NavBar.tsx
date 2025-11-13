@@ -28,12 +28,12 @@ const NavBar = () => {
       link: "/#speakers"
     }
   ]
-    const imageRef = useRef<HTMLImageElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       if (imageRef.current) {
-        imageRef.current?.classList.add("hidden");
+        imageRef.current?.classList.add("md:hidden");
       }
     };
 
@@ -47,8 +47,8 @@ const NavBar = () => {
 
 
   return (
-    <motion.nav 
-      className='flex justify-between px-5 sm:px-6 2xl:px-[12rem] max-md:bg-white/20 max-md:backdrop-blur-sm  max-w-[150rem] mx-auto items-center py-4 sm:py-5 fixed top-0 md:top-10 left-0 right-0 z-50'
+    <motion.nav
+      className={`flex justify-between px-5 sm:px-6 2xl:px-[12rem] ${isMenuOpen ? 'max-md:bg-[#fcf4f4]' : 'max-md:bg-white/20'}  max-md:backdrop-blur-sm  max-w-[150rem] mx-auto items-center py-4 sm:py-5 fixed top-0 md:top-10 left-0 right-0 z-50 `}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -57,14 +57,14 @@ const NavBar = () => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        // className='bg-white/20 backdrop-blur-sm '
+      // className='bg-white/20 backdrop-blur-sm '
       >
-        <Image 
-          src='/./devfest-abklogo.png' 
-          alt='logo' 
-          width={1000} 
-          height={1000} 
-          className='w-[120px] sm:w-[150px]' 
+        <Image
+          src='/./devfest-abklogo.png'
+          alt='logo'
+          width={1000}
+          height={1000}
+          className='w-[120px] sm:w-[150px]'
           unoptimized
           ref={imageRef}
         />
@@ -78,10 +78,10 @@ const NavBar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-            
+
           >
-            <Link 
-              href={item.link} 
+            <Link
+              href={item.link}
               className='text-sm xl:text-base font-medium hover:text-gray-600 transition-colors relative group'
             >
               {item.title}
@@ -90,7 +90,7 @@ const NavBar = () => {
           </motion.div>
         ))}
 
-        
+
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -118,8 +118,8 @@ const NavBar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div 
-            className='absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 lg:hidden'
+          <motion.div
+            className='absolute top-full py-10 left-0 right-0 bg-[#fcf4f4]  lg:hidden z-[9999999]'
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -133,8 +133,8 @@ const NavBar = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                 >
-                  <Link 
-                    href={item.link} 
+                  <Link
+                    href={item.link}
                     className='block py-2 text-base font-medium hover:text-gray-600 transition-colors'
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -142,13 +142,13 @@ const NavBar = () => {
                   </Link>
                 </motion.div>
               ))}
-              <motion.div 
+              <motion.div
                 className='pt-4'
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: nav.length * 0.1 }}
               >
-                <GetTicketButton style='px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 border border-[] '/>
+                <GetTicketButton style='px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 border border-[] ' />
               </motion.div>
             </div>
           </motion.div>
