@@ -58,7 +58,7 @@ const PastEventsGallery = () => {
     },
     {
       id: 2,
-      src: '/./past2.jpg',
+      src: '/./past5.jpg',
       alt: 'DevFest Abeokuta 2024 - Workshop',
       title: 'Keynote Session',
       year: '2022'
@@ -79,7 +79,7 @@ const PastEventsGallery = () => {
     },
     {
       id: 5,
-      src: '/./past5.jpg',
+      src: '/./past2.jpg',
       alt: 'DevFest Abeokuta 2023 - Hackathon',
       title: 'Event Banner',
       year: '2022'
@@ -99,9 +99,9 @@ const PastEventsGallery = () => {
       <div className='py-16 sm:py-20 px-4 bg-[#1e1e1e] rounded-b-[7rem]  md:rounded-b-[9rem]'>
         <div className='general-space mx-auto mt-16'>
           {/* Section Header */}
-          <div className="flex items-center justify-between">
+          <div className="flex max-md:flex-col items-center justify-between">
             <motion.div
-              className='text-left mb-8 sm:mb-12 text-white'
+              className='text-left mb-2 sm:mb-12 text-white'
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -117,14 +117,6 @@ const PastEventsGallery = () => {
             </motion.div>
 
             <div className='flex flex-col gap-4'>
-              <Image
-                src='/./devfest-2025.png'
-                alt='DevFest Logo'
-                width={100}
-                height={100}
-                className='h-12 md:w-[250px] xl:w-[350px] sm:h-12 object-cover'
-                unoptimized
-              />
               <Image src={'curl-icon.svg'} alt='curl' width={200} height={100} className='h-40 ' />
             </div>
           </div>
@@ -141,7 +133,7 @@ const PastEventsGallery = () => {
             <div
               ref={scrollContainerRef}
               // className="space-y-3 py-3 sm:columns-2 sm:gap-2 md:columns-3 "
-              className='flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 snap-x snap-mandatory scrollbar-hide scroll-smooth'
+              className=' flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 snap-x snap-mandatory scrollbar-hide scroll-smooth'
             >
               {galleryImages.map((image, index) => {
                 const isActive = activeImage === image.id
@@ -195,7 +187,7 @@ const PastEventsGallery = () => {
           {/* Stats Section */}
           <motion.div
 
-            className='backdrop-blur-sm rounded-none borer -[#fcf4f4] [#F9AB00] text-black mt-12 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 '
+            className='backdrop-blur-sm rounded-none borer -[#fcf4f4] [#F9AB00] text-black mt-2 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 '
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -227,4 +219,3 @@ const PastEventsGallery = () => {
 }
 
 export default PastEventsGallery
-

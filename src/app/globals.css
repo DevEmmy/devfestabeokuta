@@ -2,29 +2,29 @@
 
 :root {
   --background: #1e1e1e;
-   /* #ccf6c5; */
+  /* #ccf6c5; */
   --foreground: #171717;
   --font-bricolage: var(--font-bricolage);
   --font-manrope: var(--font-manrope);
-};
+}
 
-body{
+body {
   background-color: var(--background);
   font-family: var(--font-manrope);
   overflow-x: hidden;
 }
 
 /* Ensure no horizontal overflow */
-html, body {
+html,
+body {
   max-width: 100%;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  @apply cursor-none
+  @apply cursor-none;
 }
 
-
 button {
-  @apply cursor-none
+  @apply cursor-none;
 }
 
 /* Prevent images from causing overflow */
@@ -33,7 +33,12 @@ img {
   height: auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-bricolage);
 }
 
@@ -48,24 +53,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .general-space {
-  @apply px-5 sm:px-6 2xl:px-[12rem] 2xl:py-20 max-w-[150rem] mx-auto flex flex-col gap-36 ;
+  @apply px-5 sm:px-6 2xl:px-[12rem] 2xl:py-20 md:py-10 py-10 max-w-[150rem] mx-auto flex flex-col gap-10  md:gap-24;
 }
 
+.google-colors {
+  background: linear-gradient(190deg, #4285f4, #ea4335, #fbbc04, #34a853);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #4444;
+  background-clip: text;
+}
 
 /* Mobile-specific improvements */
 @media (max-width: 640px) {
   body {
     font-size: 14px;
   }
-  
+
   /* Ensure images don't overflow on mobile */
   img {
     max-width: 100%;
     height: auto;
   }
-  
+
   /* Improve touch targets */
-  button, a {
+  button,
+  a {
     min-height: 44px;
     min-width: 44px;
   }

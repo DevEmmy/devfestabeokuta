@@ -16,7 +16,7 @@ const Footer = () => {
         alt='banner'
         width={1000}
         height={1000}
-        className='w-full border-y-6 border-[#34A853] mb-16 md:mb-20'
+        className='w-full border-y-6 border-[#34A853] mb-16 md:mb-20 max-md:h-[200px] max-md:object-fill scale-200'
         unoptimized
       />
       <div className='general-space pt-14 pb-14 '>

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 import Image from 'next/image'
 import OrbitalAnimation from './OrbitalAnimation'
+import DoodleBg from './DoodleBg'
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
@@ -52,10 +53,16 @@ const FAQ = () => {
     <section id="faq" className="py-56 px-4 min-h-screen relative bg -[#ffe7a5]">
 
       <div className='general-space '>
+        <DoodleBg />
         <div className="flex items-start justify-between">
-          <div className='max-w-xl relative mb-24 flex flex-col gap-8 z-[99]'>
-            <h3 className='text-6xl font-medium leading-20 text-white [#ffe7a5] -white'>Stay Connected with GDG Abeokuta</h3>
-            <p className='text-[#fffcfc]'>
+          <div className='max-w-xl relative mb-24 flex flex-col gap-8 z-10'>
+            <h3 className='text-6xl font-medium leading-20 text-yellow-600 [#ffe7a5]' style={{
+              WebkitTextStroke: '42px #fcf4f4',
+              paintOrder: 'stroke markers fill',
+              textShadow: '42px 35x 4px rgba(0,0,0,0.3)',
+              WebkitTextStrokeColor: '#f0f0f0'
+            }}>Stay Connected with GDG Abeokuta</h3>
+            <p className='text-[#fffcfc] leading-loose max-md:mt-10'>
               Discover our latest activities, events, and webinars. Be the first to get updates on everything happening in the GDG Lagos community.
             </p>
           </div>
@@ -64,7 +71,7 @@ const FAQ = () => {
         </div>
       </div>
 
-      <div className="bg-[#f0f0f0]  border-12 border-[#4285f4] [#f6b51e] max-w-3xl w-full  p-8 rounded-4xl mx-auto relative ">
+      <div className="bg-[#f0f0f0]  border-12 border-[#4285f4] [#f6b51e] max-w-3xl w-full  p-8 rounded-2xl mx-auto relative ">
         <motion.div
           className="text-center my-12"
           initial={{ opacity: 0, y: 30 }}
@@ -92,9 +99,9 @@ const FAQ = () => {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-black"
+                className="w-full px-3 md:px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-black"
               >
-                <h3 className="text-lg sm:text-xl font-bold text-black pr-4">
+                <h3 className="max-md:text-base text-lg sm:text-xl font-bold text-black pr-4">
                   {faq.question}
                 </h3>
                 <motion.svg

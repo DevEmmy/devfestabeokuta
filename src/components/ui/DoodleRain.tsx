@@ -143,9 +143,9 @@ const DoodleRain = () => {
           key={index}
           src={src}
           alt={`doodle-${index + 1}`}
-          width={80}
-          height={80}
-          className="doodle-item absolute"
+          width={70}
+          height={70}
+          className="doodle-item absolute size-10 max-md:size-7"
         />
       ))}
     </div>

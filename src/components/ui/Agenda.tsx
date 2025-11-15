@@ -14,14 +14,11 @@ const Agenda = () => {
       <div className="general-space mx-auto  bg-[#FCF4F4] ">
 
 
-        <div className=' pt-20 '>
-          <TitleHead />
+        <div className='pt-20 '>
+          <TitleHead title='Agenda' />
+          <EventShowcase />
         </div>
 
-
-
-
-        <EventShowcase />
 
 
       </div>

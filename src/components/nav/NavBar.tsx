@@ -46,9 +46,12 @@ const NavBar = () => {
   }, []);
 
 
+  // ${isMenuOpen ? 'max-md:bg-[#fcf4f4]' : 'max-md:bg-white/20'}
+
+  const [active, setActive] = useState<number | null>(null)
   return (
     <motion.nav
-      className={`flex justify-between px-5 sm:px-6 2xl:px-[12rem] ${isMenuOpen ? 'max-md:bg-[#fcf4f4]' : 'max-md:bg-white/20'}  max-md:backdrop-blur-sm  max-w-[150rem] mx-auto items-center py-4 sm:py-5 fixed top-0 md:top-10 left-0 right-0 z-50 `}
+      className={`flex justify-between px-5 sm:px-6 2xl:px-[12rem]  ${isMenuOpen ? 'bg-[#f0f0f0] [#1e1e1e] px-[36px] py-[18px]' : 'max-md:backdrop-blur-xl max-md:bg-[#f0f0f0]/20 max-md:rounded-2xl max-md:mx-4 max-md:mt-3.5 '}   md:rounded-4xl   max-md:backdrop-blu-sm  max-w-[150rem] md:mx-auto items-center py-1 sm:py-5 fixed top-0 md:top-10 left-0 right-0 z-50 `}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -78,6 +81,9 @@ const NavBar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+            onClick={() => setActive(index)}
+            className={`
+              ${index == active && 'bg-amber-100 rounded-2xl px-3 py-2'}`}
 
           >
             <Link
@@ -96,22 +102,23 @@ const NavBar = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <GetTicketButton style='px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 border-4 border-[#ea4335] [#c3ecf6]' />
+          <GetTicketButton style='px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 border-4 border-[#34A853] [#FF8A65] [#ea4335] [#c3ecf6]' />
         </motion.div>
       </div>
 
       {/* Mobile Menu Button */}
       <motion.button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className='md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors'
+        className='md:hidden p-2 rounded-lg  transition-colors'
         aria-label='Toggle menu'
         whileTap={{ scale: 0.9 }}
       >
         <motion.div
           animate={{ rotate: isMenuOpen ? 90 : 0 }}
           transition={{ duration: 0.3 }}
+          className=' mix-blend-difference bg-white/30  p-1.5 rounded-full invert-0'
         >
-          <RiMenu2Line size={26} />
+          <RiMenu2Line   size={25} color='#444' />
         </motion.div>
       </motion.button>
 
@@ -119,7 +126,7 @@ const NavBar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className='absolute top-full py-10 left-0 right-0 bg-[#fcf4f4]  lg:hidden z-[9999999]'
+            className='absolute top-full py-10 px-[36px] left-0 right-0 bg-[#f0f0f0] [#1e1e1e] [#fcf4f4]  lg:hidden z-[9999999]'
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}

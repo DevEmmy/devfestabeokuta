@@ -1,260 +1,228 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import GetTicketButton from './GetTicketButton';
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import GetTicketButton from "./GetTicketButton";
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 interface EventCard {
   title: string;
   bgImage: string;
-  bgColor: string;
   textColor: string;
-  size: 'large' | 'small';
-  image?: string
+  size: "large" | "small";
+  image: string;
 }
 
 const EventShowcase: React.FC = () => {
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Add card refs properly
+  const addCardRef = (el: HTMLDivElement | null) => {
+    if (el && !cardsRef.current.includes(el)) {
+      cardsRef.current.push(el);
+    }
+  };
 
   useEffect(() => {
-    // Animate cards with stagger
-    gsap.fromTo(
+    const tl = gsap.timeline({
+      defaults: { ease: "power3.out" },
+    });
+
+    // Cards animation sequence with ScrollTrigger
+    tl.fromTo(
       cardsRef.current,
-      {
-        opacity: 0,
-        scale: 0.9,
-        y: 30
-      },
+      { opacity: 0, scale: 0.9, y: 10 },
       {
         opacity: 1,
         scale: 1,
         y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out'
+        duration: 0.9,
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          end: "top 20%",
+          toggleActions: "play none none reverse",
+        }
       }
     );
 
-    // Animate button
-    gsap.fromTo(
+    // Button animation after cards with ScrollTrigger
+    tl.fromTo(
       buttonRef.current,
       { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, duration: 0.6, delay: 1, ease: 'back.out(1.7)' }
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: buttonRef.current,
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        }
+      },
+      "-=0.4"
     );
 
-    // Hover animations for cards
+    // Parallax effect on images
     cardsRef.current.forEach((card) => {
-      if (!card) return;
-
-      card.addEventListener('mouseenter', () => {
-        gsap.to(card, {
-          scale: 1.03,
-          duration: 0.3,
-          ease: 'power2.out'
+      const image = card.querySelector('img');
+      if (image) {
+        gsap.to(image, {
+          y: -30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+          }
         });
-      });
+      }
+    });
 
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          scale: 1,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
+    // Hover effects
+    const hoverEffects: (() => void)[] = [];
+
+    cardsRef.current.forEach((card) => {
+      const enter = () =>
+        gsap.to(card, { scale: 1.04, duration: 0.3, ease: "power2.out" });
+
+      const leave = () =>
+        gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
+
+      card.addEventListener("mouseenter", enter);
+      card.addEventListener("mouseleave", leave);
+
+      hoverEffects.push(() => {
+        card.removeEventListener("mouseenter", enter);
+        card.removeEventListener("mouseleave", leave);
       });
     });
+
+    // Cleanup
+    return () => {
+      hoverEffects.forEach(cleanup => cleanup());
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
+  // Event grid data
   const events: EventCard[] = [
     {
-      title: 'Workshops',
-      bgImage: 'linear-gradient(135deg, rgba(255, 182, 193, 0.6), rgba(219, 112, 147, 0.4))',
-      bgColor: 'bg-pink-100',
-      textColor: 'text-pink-600',
-      size: 'large',
-      image: 'past1.jpg'
+      title: "Workshops",
+      bgImage:
+        "linear-gradient(135deg, rgba(255,182,193,0.6), rgba(219,112,147,0.4))",
+      textColor: "text-pink-600",
+      size: "large",
+      image: "/private.jpg",
     },
     {
-      title: 'Conference',
-      bgImage: 'linear-gradient(135deg, rgba(255, 239, 186, 0.6), rgba(255, 215, 0, 0.4))',
-      bgColor: 'bg-yellow-100',
-      textColor: 'text-yellow-600',
-      size: 'large',
-      image: 'past2.jpg'
+      title: "Conference",
+      bgImage:
+        "linear-gradient(135deg, rgba(255,239,186,0.6), rgba(255,215,0,0.4))",
+      textColor: "text-yellow-600",
+      size: "large",
+      image: "/past1.jpg",
     },
     {
-      title: 'Hackathon',
-      bgImage: 'linear-gradient(135deg, rgba(186, 230, 186, 0.6), rgba(144, 238, 144, 0.4))',
-      bgColor: 'bg-green-100',
-      textColor: 'text-green-600',
-      size: 'small',
-      image: 'past3.jpg'
+      title: "Hackathon",
+      bgImage:
+        "linear-gradient(135deg, rgba(186,230,186,0.6), rgba(144,238,144,0.4))",
+      textColor: "text-green-600",
+      size: "small",
+      image: "/hackathon.jpg",
     },
     {
-      title: 'Private Network',
-      bgImage: 'linear-gradient(135deg, rgba(173, 216, 230, 0.6), rgba(135, 206, 235, 0.4))',
-      bgColor: 'bg-blue-100',
-      textColor: 'text-blue-600',
-      size: 'small',
-      image: 'past4.jpg'
-    }
+      title: "Private Network",
+      bgImage:
+        "linear-gradient(135deg, rgba(173,216,230,0.6), rgba(135,206,235,0.4))",
+      textColor: "text-blue-600",
+      size: "small",
+      image: "/past4.jpg",
+    },
   ];
-
-  const icons = ['🎨', '✨', '🌐', '🔗', '💡', '🎯', '⭐', '🚀'];
-
   return (
-    <div className="  flex items-center justify-center pb-20">
-      <div className="w-full">
-        {/* Icons Row */}
+    <div className="pt-20 pb-10">
+      <div className="flex justify-center items-center pb-20">
+        <div ref={containerRef} className="w-full max-w-[1400px] px-4 lg:px-6">
 
+          {/* Responsive Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-3">
 
-        {/* Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-          {/* Workshops - Large Left */}
-
-          <div
-            ref={(el: any) => (cardsRef.current[0] = el)}
-            className="col-span-1 relative overflow-hidden rounded-2xl cursor-pointer group"
-            style={{
-              background: events[0].bgImage,
-              minHeight: '400px',
-              border: '4px dashed black'
-            }}
-          >
-            {/* Overlay image */}
-            <img
-              src={events[0].image}
-              alt="overlay"
-              className="absolute inset-0 w-full h-full object-cover "
-            />
-
-            {/* White blur layer (optional) */}
-            {/* <div className="absolute inset-0 bg-white backdrop-blur-sm" /> */}
-
-            {/* Content */}
-            <div className="absolute inset-0 flex items-end p-8">
-              <h2
-                className={`text-6xl font-black ${events[0].textColor} drop-shadow-lg relative z-10`}
+            {events.map((event, index) => (
+              <div
+                key={index}
+                ref={addCardRef}
+                className={`
+                  relative overflow-hidden rounded-2xl cursor-pointer group 
+                  transition-all duration-300 border-[10px] border-[#1e1e1e]/40
+                
+                  ${index === 0 && "row-span-2"}
+                  ${index === 1 && "row-span-1"}
+                  ${index === 2 && ""}
+                  row-span-1
+                  ${event.size === "large" ? index === 0 || index === 1 ? "md:col-span-2 min-h-[250px]" : "col-span-1 md:col-span-2 min-h-[350px]" : "min-h-[250px] md:min-h-[125px]"}
+                `}
                 style={{
-                  WebkitTextStroke: '2px white',
-                  paintOrder: 'stroke fill'
+                  background: event.bgImage,
                 }}
               >
-                {events[0].title}
-              </h2>
-            </div>
+                {/* Background Image */}
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  className="absolute inset-0 h-full w-auto min-h-[250px] object-cover scale-150"
+                />
 
-            {/* Corner Handles */}
-            <div className="absolute top-2 left-2 w-4 h-4 border-l-4 border-t-4 border-black" />
-            <div className="absolute top-2 right-2 w-4 h-4 border-r-4 border-t-4 border-black" />
-            <div className="absolute bottom-2 left-2 w-4 h-4 border-l-4 border-b-4 border-black" />
-            <div className="absolute bottom-2 right-2 w-4 h-4 border-r-4 border-b-4 border-black" />
+                {/* Title */}
+                <div className="absolute inset-0 flex items-end p-6 lg:p-8">
+                  <h2
+                    className={`font-black drop-shadow-lg z-10 ${event.textColor}`}
+                    style={{
+                      WebkitTextStroke: "2px white",
+                      paintOrder: "stroke fill",
+                    }}
+                  >
+                    <span
+                      className={`
+                        block 
+                        ${event.size === "large" ? "text-4xl md:text-6xl lg:text-7xl" : "text-4xl md:text-4xl"}
+                      `}
+                    >
+                      {event.title}
+                    </span>
+                  </h2>
+                </div>
+
+                {/* Corner UI */}
+                <Corners />
+              </div>
+            ))}
           </div>
 
-
-          {/* Conference - Large Right Top */}
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 '>
-            <div
-              ref={(el: any) => (cardsRef.current[1] = el)}
-              className="relative col-span-2 overflow-hidden rounded-2xl cursor-pointer group"
-              style={{
-                background: events[1].bgImage,
-                minHeight: '292px',
-                border: '4px dashed black'
-              }}
-            >
-              <img
-                src={events[0].image}
-                alt="overlay"
-                className="absolute inset-0 w-full h-full object-cover "
-              />
-              <div className="absolute inset-0 flex items-center justify-center p-6">
-                <h2 className={`text-5xl font-black ${events[1].textColor} drop-shadow-lg relative z-10`}
-                  style={{
-                    WebkitTextStroke: '2px white',
-                    paintOrder: 'stroke fill'
-                  }}>
-                  {events[1].title}
-                </h2>
-              </div>
-              {/* Corner Handles */}
-              <div className="absolute top-2 left-2 w-4 h-4 border-l-4 border-t-4 border-black" />
-              <div className="absolute top-2 right-2 w-4 h-4 border-r-4 border-t-4 border-black" />
-              <div className="absolute bottom-2 left-2 w-4 h-4 border-l-4 border-b-4 border-black" />
-              <div className="absolute bottom-2 right-2 w-4 h-4 border-r-4 border-b-4 border-black" />
-            </div>
-
-            {/* Hackathon - Small Right Bottom Left */}
-            <div
-              ref={(el: any) => (cardsRef.current[2] = el)}
-              className="relative col-span-1 overflow-hidden rounded-2xl cursor-pointer group"
-              style={{
-                background: events[2].bgImage,
-                minHeight: '222px',
-                border: '4px dashed black'
-              }}
-            >
-              <img
-                src={events[0].image}
-                alt="overlay"
-                className="absolute inset-0 w-full h-full object-cover "
-              />
-              <div className="absolute inset-0 flex items-end p-6">
-                <h2 className={`text-4xl font-black ${events[2].textColor} drop-shadow-lg relative z-10`}
-                  style={{
-                    WebkitTextStroke: '2px white',
-                    paintOrder: 'stroke fill'
-                  }}>
-                  {events[2].title}
-                </h2>
-              </div>
-              {/* Corner Handles */}
-              <div className="absolute top-2 left-2 w-4 h-4 border-l-4 border-t-4 border-black" />
-              <div className="absolute top-2 right-2 w-4 h-4 border-r-4 border-t-4 border-black" />
-              <div className="absolute bottom-2 left-2 w-4 h-4 border-l-4 border-b-4 border-black" />
-              <div className="absolute bottom-2 right-2 w-4 h-4 border-r-4 border-b-4 border-black" />
-            </div>
-
-            {/* Private Network - Small Right Bottom Right */}
-            <div
-              ref={(el: any) => (cardsRef.current[3] = el)}
-              className="relative col-span-1 overflow-hidden rounded-2xl cursor-pointer group"
-              style={{
-                background: events[3].bgImage,
-                minHeight: '192px',
-                border: '4px dashed black'
-              }}
-            >
-              <img
-                src={events[0].image}
-                alt="overlay"
-                className="absolute inset-0 w-full h-full object-cover "
-              />
-              <div className="absolute inset-0 flex items-end p-6">
-                <h2 className={`text-4xl font-black ${events[3].textColor} drop-shadow-lg relative z-10 leading-tight`}
-                  style={{
-                    WebkitTextStroke: '2px white',
-                    paintOrder: 'stroke fill'
-                  }}>
-                  {events[3].title}
-                </h2>
-              </div>
-              {/* Corner Handles */}
-              <div className="absolute top-2 left-2 w-4 h-4 border-l-4 border-t-4 border-black" />
-              <div className="absolute top-2 right-2 w-4 h-4 border-r-4 border-t-4 border-black" />
-              <div className="absolute bottom-2 left-2 w-4 h-4 border-l-4 border-b-4 border-black" />
-              <div className="absolute bottom-2 right-2 w-4 h-4 border-r-4 border-b-4 border-black" />
-            </div>
+          {/* Button Section */}
+          <div className="grid place-items-center pt-12" ref={buttonRef}>
+            <GetTicketButton />
           </div>
         </div>
-
-
-
-        <div className='grid place-items-center pt-10'>
-          <GetTicketButton isIcon />
-        </div>
-
       </div>
     </div>
   );
 };
+
+// Reusable corner design
+const Corners = () => (
+  <>
+    <div className="absolute top-2 left-2 w-4 h-4 border-l-4 border-t-4 border-black/50 rounded-tl-lg" />
+    <div className="absolute top-2 right-2 w-4 h-4 border-r-4 border-t-4 border-black/40 rounded-tr-full" />
+    <div className="absolute bottom-2 left-2 w-4 h-4 border-l-4 border-b-4 border-black/40 rounded-bl-full" />
+    <div className="absolute bottom-2 right-2 w-4 h-4 border-r-4 border-b-4 border-black/40 rounded-br-full" />
+  </>
+);
 
 export default EventShowcase;

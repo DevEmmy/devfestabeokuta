@@ -46,7 +46,7 @@ const CountdownTimer = () => {
 
   return (
     <motion.div
-      className=' md:m-10 flex md:rounded-t-4xl rounded-b-[7rem] md:rounded-b-[9rem] flex-col items-center h-[90vh] z-20 relative justify-center gap-6 sm:gap-8 py-16 sm:py-20 px-4 overflow-hidden'
+      className=' m-4 rounded-t-3xl md:m-10 flex md:rounded-t-4xl rounded-b-4xl md:rounded-b-[9rem] flex-col items-center h-[90vh] z-20 relative justify-center gap-6 sm:gap-8 py-16 sm:py-20 px-4 overflow-hidden'
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -81,16 +81,16 @@ const CountdownTimer = () => {
       <div className='absolute inset-0 bg-black/50 z-[-1]'></div>
 
       <motion.h2
-        className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white px-4'
+        className='text-3xl max-md:mb-4  sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white px-4'
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        Count Every Second Until the Event
+        Count Every Second Until the Event 
       </motion.h2>
 
-      <div className='grid grid-cols-2 lg:flex gap-3 sm:gap-4 md:gap-6 w-full max-w-4xl'>
+      <div className='grid grid-cols-2 lg:flex  sm:gap-4 md:gap-6 w-full max-w-4xl'>
         {/* Days */}
 
         {/* ${index == 0 ? 'bg-[#FFE7A5] rounded-l-4xl' : index == 1 ? 'bg-[#C3ECF6]' : index == 2 ? 'bg-[#F8D8D8]' : 'bg-[#CCF6C5] rounded-r-4xl'} */}
@@ -185,7 +185,7 @@ const CountdownTimer = () => {
         transition={{ duration: 0.6, delay: 0.7 }}
         className='mt-9'
       >
-        <GetTicketButton style='px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-[#F6b51e] border-6 border-inset border-[#FFE7A5] [#f0f0f0]' />
+        <GetTicketButton style='px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-[#F6b51e] backdrop-blur-xl border-8 border-inset border-t-[#FFE7A5] border-r-[#C3ECF6] border-l-[#F8D8D8] border-b-[#CCF6C5] [#f0f0f0]' />
       </motion.div>
     </motion.div>
   )

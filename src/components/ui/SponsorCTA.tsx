@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { Microphone, Moneys } from 'iconsax-react';
 import CustomButton from './CustomButton';
 import TitleHead from './TitleHead';
+import DoodleBg from './DoodleBg';
 
 export default function SponsorCTA() {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -62,13 +63,15 @@ export default function SponsorCTA() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f0f0f0] flex items-center justify-center py-10">
-      <div className="general-space w-full ">
+    <div className="min-h-screen bg-[#f0f0f0] flex items-center justify-center py-10 relative">
+      <div className="general-space w-full relative ">
+
+        {/* <DoodleBg /> */}
         {/* Header */}
         <TitleHead title="Sponsors" />
 
         {/* Sponsors Card */}
-        <div ref={sponsorsRef} className="flex items-center justify-between gap-10 flex-wrap p-10 ">
+        <div ref={sponsorsRef} className="max-md:grid md:flex flex-wrap max-md:grid-cols-2  gap-10   relative">
           {/* MALhub */}
           <div
             ref={(el: any) => logosRef.current[0] = el}
