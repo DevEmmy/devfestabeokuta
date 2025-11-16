@@ -50,20 +50,20 @@ const FAQ = () => {
   }
 
   return (
-    <section id="faq" className="py-56 px-4 min-h-screen relative bg -[#ffe7a5]">
+    <section id="faq" className="py-56 px-4 min-h-screen relative ">
 
       <div className='general-space '>
-        <DoodleBg />
+        <DoodleBg color='#f0f0f0' opacity={0.009} />
         <div className="flex items-start justify-between">
           <div className='max-w-xl relative mb-24 flex flex-col gap-8 z-10'>
             <h3 className='text-6xl font-medium leading-20 text-yellow-600 [#ffe7a5]' style={{
-              WebkitTextStroke: '42px #fcf4f4',
+              WebkitTextStroke: '39px #fcf4f4',
               paintOrder: 'stroke markers fill',
               textShadow: '42px 35x 4px rgba(0,0,0,0.3)',
               WebkitTextStrokeColor: '#f0f0f0'
             }}>Stay Connected with GDG Abeokuta</h3>
-            <p className='text-[#fffcfc] leading-loose max-md:mt-10'>
-              Discover our latest activities, events, and webinars. Be the first to get updates on everything happening in the GDG Lagos community.
+            <p className='text-[#fffcfc] leading-loose max-md:mt-10 md:text-lg'>
+              Discover our latest activities, events, and webinars. Be the first to get updates on everything happening in the GDG Abeokuta community.
             </p>
           </div>
 

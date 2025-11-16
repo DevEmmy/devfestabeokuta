@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { gsap } from 'gsap'
 import DoodleRain from './DoodleRain'
 import DoodleBg from './DoodleBg'
+import CustomButton from './CustomButton'
+import { Microphone } from 'iconsax-react'
 
 const Banner = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -153,11 +155,11 @@ const Banner = () => {
 
               <span className='relative md:ml-5'>
                 <span className='max-md:leading-16 [#FF8A65]' style={{
-                  WebkitTextStroke: '42px #fcf4f4',
+                  WebkitTextStroke: '45px #fcf4f4',
                   paintOrder: 'stroke markers fill',
                   textShadow: '42px 35x 4px rgba(0,0,0,0.3)',
-                  WebkitTextStrokeColor: '#f0f0f0'
-                }}>Devfest Abeokuta 25."</span>
+                  WebkitTextStrokeColor: '#fcf4f4'
+                }}> <span className='text-[#fcf4f4] text-[4px] '>{"~"}</span>Devfest Abeokuta 25."</span>
               </span>
 
             </h1>
@@ -165,7 +167,7 @@ const Banner = () => {
 
           <p
             ref={descriptionRef}
-            className='md:leading-9 text-base max-md:text-base mt-2 sm:text-base lg:text-[18px] w-full sm:w-4/5 lg:w-2/3 text-center max-w-4xl text-gray-600'
+            className='md:leading-9 text-base max-md:text-base mt-2 sm:text-base lg:text-[18px] w-full sm:w-4/5 lg:w-2/3 text-center max-w-4xl text-black'
           >
             Devfest Abeokuta is a one-day event that brings together developers, designers, and entrepreneurs to learn, share, and grow together on December 6th, 2025.
           </p>
@@ -176,11 +178,21 @@ const Banner = () => {
           >
             <GetTicketButton isIcon />
 
-            <button
+            {/* <button
               className='bg-white border border-black text-black px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full flex items-center gap-2 text-sm sm:text-base w-fit sm:w-auto justify-center'
             >
               Apply to speak
-            </button>
+            </button> */}
+
+            <CustomButton
+              href="#schedule"
+              label="Apply to speak"
+              icon={<Microphone size="24" color="#FF8A65" className='text-purple-400' />}
+              // clor="#EA4335"
+              className="px-4 py-3 bg-white border border-black text-black hover:bg-[#374151] hover:text-gray-200"
+            />
+
+            {/* <CustomButton icon={ } label='Apply to speak' className='bg-white border border-black text-black px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full flex items-center gap-2 text-sm sm:text-base w-fit sm:w-auto justify-center' /> */}
 
           </div>
 
@@ -225,7 +237,7 @@ const Banner = () => {
           />
         </div>
 
-        <div className='flex gap-20  p-4  absolute max-md:hidden left-28 -top-16' ref={hashRef}>
+        {/* <div className='flex gap-20  p-4  absolute max-md:hidden left-28 -top-16' ref={hashRef}>
           <div className='bg-red-400 [#f8d8d8] h-40 w-3 rotate-y-6 rounded-2xl ' />
           <div className='bg-[#f8d8d8] h-26 w-3  rounded-2xl' />
           <div className='bg-blue-400 rounded-2xl [#f8d8d8] h-40 w-3 -rotate-x-3' />
@@ -235,7 +247,7 @@ const Banner = () => {
           <div className='bg-green-400 rounded-2xl [#f8d8d8] h-40 w-3 rotate-y-12 ' />
           <div className='bg-purple-400 rounded-2xl -[#f8d8d8] h-26 w-3 ' />
           <div className='bg-rose-400 rounded-2xl -[#f8d8d8] h-40 w-3 -rotate-x-3' />
-        </div>
+        </div> */}
 
         <div className='flex flex-col gap-3  p-4 absolute -right-16 max-md:hidden '>
           <div className='b-[#f8d8d8] border-5 border-[#1e1e1e] bg-[#ffe7a5]  w-40 h-10 rotate-y-6  rounded-tl-4xl' />

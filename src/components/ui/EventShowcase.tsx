@@ -43,9 +43,9 @@ const EventShowcase: React.FC = () => {
         stagger: 0.2,
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 80%",
+          start: "top 116%",
           end: "top 20%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play pause resume reverse"
         }
       }
     );
@@ -147,9 +147,9 @@ const EventShowcase: React.FC = () => {
     },
   ];
   return (
-    <div className="pt-20 pb-10">
-      <div className="flex justify-center items-center pb-20">
-        <div ref={containerRef} className="w-full max-w-[1400px] px-4 lg:px-6">
+    <div className="py-6  md:pt-20 md:pb-10">
+      <div className="flex justify-center items-center pb-10">
+        <div ref={containerRef} className="w-full ">
 
           {/* Responsive Grid */}
           <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-3">
@@ -160,13 +160,13 @@ const EventShowcase: React.FC = () => {
                 ref={addCardRef}
                 className={`
                   relative overflow-hidden rounded-2xl cursor-pointer group 
-                  transition-all duration-300 border-[10px] border-[#1e1e1e]/40
+                  transition-all duration-300 border-[12px] md:border-[24px] border-spacing-x-12 border-[#1e1e1e]/90 border-double
                 
                   ${index === 0 && "row-span-2"}
                   ${index === 1 && "row-span-1"}
                   ${index === 2 && ""}
                   row-span-1
-                  ${event.size === "large" ? index === 0 || index === 1 ? "md:col-span-2 min-h-[250px]" : "col-span-1 md:col-span-2 min-h-[350px]" : "min-h-[250px] md:min-h-[125px]"}
+                  ${event.size === "large" ? index === 0 || index === 1 ? "md:col-span-2 min-h-[290px]" : "col-span-1 md:col-span-2 min-h-[350px]" : "min-h-[290px] md:min-h-[195px]"}
                 `}
                 style={{
                   background: event.bgImage,
@@ -206,8 +206,8 @@ const EventShowcase: React.FC = () => {
           </div>
 
           {/* Button Section */}
-          <div className="grid place-items-center pt-12" ref={buttonRef}>
-            <GetTicketButton />
+          <div className="grid place-items-center pt-10 md:pt-28" ref={buttonRef}>
+            <GetTicketButton isIcon />
           </div>
         </div>
       </div>

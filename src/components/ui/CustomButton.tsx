@@ -38,7 +38,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     const handleMouseEnter = () => {
       gsap.to(btn, {
         scale: 1.05,
-        backgroundColor: "#374151",
+        // backgroundColor: "#374151",
         boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
         duration: 0.3,
         ease: "power3.out",
@@ -49,7 +49,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     const handleMouseLeave = () => {
       gsap.to(btn, {
         scale: 1,
-        backgroundColor: "#000",
+        // backgroundColor: "#000",
         boxShadow: "0 0 0 rgba(0,0,0,0)",
         duration: 0.3,
         ease: "power3.inOut",
@@ -82,17 +82,15 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     <Link href={href} target={target}>
       <button
         ref={btnRef}
-        className={`${
-          className || "px-6 sm:px-8 lg:px-10 py-3 sm:py-4"
-        } bg-black text-white rounded-full flex items-center gap-2 cursor-pointer text-sm lg:text-xl md:font-semibold sm:text-base transition-all duration-300`}
+        className={`${className} px-6 sm:px-8 lg:px-10 py-3 sm:py-4  rounded-full flex items-center gap-2 cursor-pointer text-sm lg:text-xl md:font-semibold sm:text-base transition-all duration-300`}
       >
-        {icon && <span className="mr-2 flex items-center">{icon}</span>}
+        {icon && <span className="mr-2 flex items-center" >{icon}</span>}
 
         <span>{label}</span>
 
-        <div ref={arrowRef}>
+        {/* <div ref={arrowRef}>
           <MdArrowOutward size={20} />
-        </div>
+        </div> */}
       </button>
     </Link>
   );

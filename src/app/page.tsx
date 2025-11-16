@@ -7,7 +7,6 @@ import InvertedCursor from "@/components/ui/InvertedCursor";
 
 export default function Home() {
   return (<>
-    <InvertedCursor />
     <NavBar />
     <Homepage />
   </>

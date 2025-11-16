@@ -1,16 +1,18 @@
 import React from 'react'
 import NavBar from '@/components/nav/NavBar'
 import Footer from '@/components/ui/Footer'
+import DoodleBg from '@/components/ui/DoodleBg'
 
 const SponsorPage = () => {
   return (
     <main>
       <NavBar />
-      
-      <div className="min-h-screen bg-white">
+
+      <div className="min-h-screen relative">
         {/* Hero Section */}
-        <section className="py-16 sm:py-20 px-4 bg-[#f8d8d9]">
-          <div className="max-w-7xl mx-auto text-center">
+        <section className="py-16 sm:py-20 px-4 bg-[#f8d8d9] grid place-items-center m-10 h-[90vh]  rounded-4xl">
+          <DoodleBg />
+          <div className="general-space mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 text-black">
               Sponsorship Opportunities
             </h1>
@@ -219,7 +221,7 @@ const SponsorPage = () => {
                 Let's discuss how we can create a partnership that benefits both our communities.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
+                <a
                   href="mailto:sponsors@devfestabeokuta.com?subject=Sponsorship Inquiry"
                   className="inline-flex items-center justify-center px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-black text-white rounded-full font-semibold text-sm sm:text-base hover:bg-gray-800 transition-colors"
                 >
@@ -228,7 +230,7 @@ const SponsorPage = () => {
                   </svg>
                   Email Us
                 </a>
-                <a 
+                <a
                   href="tel:+2341234567890"
                   className="inline-flex items-center justify-center px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-white border-2 border-black text-black rounded-full font-semibold text-sm sm:text-base hover:bg-gray-100 transition-colors"
                 >

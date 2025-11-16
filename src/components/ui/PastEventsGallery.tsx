@@ -96,29 +96,34 @@ const PastEventsGallery = () => {
   const colors = ['#C3ECF6', '#F8D8D8', '#FCF6DF', '#CCF6C5']
   return (
     <section className="bg-[#fcf4f4] ">
-      <div className='py-16 sm:py-20 px-4 bg-[#1e1e1e] rounded-b-[7rem]  md:rounded-b-[9rem]'>
+      <div className='pb-12 sm:pb-20 sm:pt-10 px-4 bg-[#1e1e1e]  md:rounded-b-4xl'>
         <div className='general-space mx-auto mt-16'>
           {/* Section Header */}
-          <div className="flex max-md:flex-col items-center justify-between">
+          <div className="flex max-md:flex-col gap-10 items-start justify-between">
             <motion.div
-              className='text-left mb-2 sm:mb-12 text-white'
+              className='text-left mb-2 sm:mb-12 text-white max-md:text-center max-w-xl lg:max-w-2xl'
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4'>
-                Recap of Past Events
+              <h2 className='text-5xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-black border-amber-600 max-md:leading-[4rem]' style={{
+                WebkitTextStroke: '39px #fcf4f4',
+                paintOrder: 'stroke markers fill',
+                textShadow: '42px 35x 4px rgba(0,0,0,0.3)',
+                WebkitTextStrokeColor: '#fcf4f4'
+
+              }}>
+                {/* Recap of Past Events */}
+                A Look Back at Our Events
               </h2>
-              <p className='text-base sm:text-lg text-white max-w-2xl mx-auto px-4'>
-                Relive the amazing moments from our previous DevFest Abeokuta events.
-                From inspiring talks to networking sessions, see what makes our community special.
+              <p className='text-base sm:text-lg text-white/80  mx-auto mt-8'>
+                Revisit the best of DevFest Abeokuta — inspiring sessions, great people, unforgettable moments.
               </p>
             </motion.div>
 
-            <div className='flex flex-col gap-4'>
-              <Image src={'curl-icon.svg'} alt='curl' width={200} height={100} className='h-40 ' />
-            </div>
+
+            <Image src={'curl-icon.svg'} alt='curl' width={200} height={100} className='h-40 rotate-45 max-md:hidden ' />
           </div>
 
           {/* Gallery Container with Blur Edges */}
@@ -133,7 +138,7 @@ const PastEventsGallery = () => {
             <div
               ref={scrollContainerRef}
               // className="space-y-3 py-3 sm:columns-2 sm:gap-2 md:columns-3 "
-              className=' flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 snap-x snap-mandatory scrollbar-hide scroll-smooth'
+              className=' flex sm:grid sm:grid-cols-2  lg:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 snap-x snap-mandatory scrollbar-hide scroll-smooth'
             >
               {galleryImages.map((image, index) => {
                 const isActive = activeImage === image.id
@@ -157,7 +162,7 @@ const PastEventsGallery = () => {
                         className={`object-cover transition-transform duration-500 ${isMobile
                           ? isActive ? 'grayscale-0 scale-110' : 'grayscale-100'
                           : 'grayscale-100 sm:group-hover:grayscale-0 sm:group-hover:scale-110'
-                          }`}
+                          } ${index === 1 && 'sm:group-grayscale-0'}`}
                         unoptimized
                       />
 
@@ -187,7 +192,7 @@ const PastEventsGallery = () => {
           {/* Stats Section */}
           <motion.div
 
-            className='backdrop-blur-sm rounded-none borer -[#fcf4f4] [#F9AB00] text-black mt-2 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 '
+            className='backdrop-blur-sm rounded-none  [#F9AB00] text-black mt-2 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 '
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

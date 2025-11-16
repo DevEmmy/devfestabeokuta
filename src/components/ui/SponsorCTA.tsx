@@ -155,7 +155,7 @@ export default function SponsorCTA() {
           href="#schedule"
           label="Sponsor Us"
           icon={<Moneys size="24" color="#4ADE80" />}
-          className="px-4 py-3 bg-black text-white mx-auto"
+          className="px-4 py-3 bg-black text-white mx-auto mb-10 hover:bg-[#374151] hover:text-gray-200"
         />
 
       </div>
