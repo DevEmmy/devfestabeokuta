@@ -111,7 +111,7 @@ const Banner = () => {
 
 
   return (
-    <section className='max-md:py-3.5 max-md:px-4  md:p-10 h-[100vh] '>
+    <section className='max-md:py-3.5 max-md:px-4  md:p-10 h-screen '>
 
 
 
@@ -119,11 +119,11 @@ const Banner = () => {
       <div
 
         ref={containerRef}
-        className=' bg[#ccf6c5] bg[#f8d8d8] [#ffe7a5][#c3ecf6] relative  bg-[#ccf6c5]  rounded-3xl md:rounded-4xl h-full flex general-space flex-col items-center justify-center gap-5 sm:gap-5  opacity-0'
+        className=' bg[#ccf6c5] bg[#f8d8d8] [#ffe7a5][#c3ecf6] relative  bg-[#CCF6C5] h-full rounded-3xl md:rounded-4xl pt-48 flex general-space flex-col items-center justify-center gap-5 sm:gap-5  opacity-0'
       >
 
 
-        <div className='z-10 flex flex-col items-center justify-center gap-7'>
+        <div className='z-10 flex flex-col items-center justify-center gap-7 max-md:mt-28'>
           <div ref={lanyardRef} className='mb-6 max-md:hidden'>
             <Image
               // src={'/./avatar-c1.png'}
@@ -174,7 +174,7 @@ const Banner = () => {
 
           <div
             ref={buttonsRef}
-            className='flex max-sm:flex-col justify-center  items-center gap-3 sm:gap-4 w-full sm:w-auto relative'
+            className='flex max-sm:flex-col justify-center  items-center gap-3 sm:gap-4 w-full sm:w-auto relative mb-12'
           >
             <GetTicketButton isIcon />
 
@@ -200,14 +200,14 @@ const Banner = () => {
         </div>
 
 
-        <Image
+        {/* <Image
           src='/./DevFest.png'
           alt='DevFest Logo'
           width={100}
           height={60}
           className='h-7 sm:h-12 w-auto max-md:absolute md:hidden max-md:bottom-3 max-md:opacity-60 object-cover'
           unoptimized
-        />
+        /> */}
 
         <DoodleRain />
 
@@ -236,18 +236,6 @@ const Banner = () => {
             unoptimized
           />
         </div>
-
-        {/* <div className='flex gap-20  p-4  absolute max-md:hidden left-28 -top-16' ref={hashRef}>
-          <div className='bg-red-400 [#f8d8d8] h-40 w-3 rotate-y-6 rounded-2xl ' />
-          <div className='bg-[#f8d8d8] h-26 w-3  rounded-2xl' />
-          <div className='bg-blue-400 rounded-2xl [#f8d8d8] h-40 w-3 -rotate-x-3' />
-        </div>
-
-        <div className='flex items-baseline gap-20  p-4 absolute max-md:hidden right-28 -bottom-16 z-99' ref={s3Ref}>
-          <div className='bg-green-400 rounded-2xl [#f8d8d8] h-40 w-3 rotate-y-12 ' />
-          <div className='bg-purple-400 rounded-2xl -[#f8d8d8] h-26 w-3 ' />
-          <div className='bg-rose-400 rounded-2xl -[#f8d8d8] h-40 w-3 -rotate-x-3' />
-        </div> */}
 
         <div className='flex flex-col gap-3  p-4 absolute -right-16 max-md:hidden '>
           <div className='b-[#f8d8d8] border-5 border-[#1e1e1e] bg-[#ffe7a5]  w-40 h-10 rotate-y-6  rounded-tl-4xl' />

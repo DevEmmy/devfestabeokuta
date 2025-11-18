@@ -96,13 +96,13 @@ const SponsorPage = () => {
 
 
 
-      <section className="bg-[#ccf6c5] bg[#f8d8d9] [#fcf4f4] [#f0f0f0]  [#f8d8d9] h-[82vh] m-4.5 md:m-10 rounded-4xl relative ">
+      <section className="bg-[#CCF6C5]/90 [#ccf6c5] bg[#f8d8d9] [#fcf4f4] [#f0f0f0]  [#f8d8d9] h-[72vh] m-4.5 md:m-10 rounded-4xl relative ">
 
         <DoodleBg />
         <DoodleRain />
         <div className='relative grid place-items-center-safe h-full '>
 
-          <div className="">
+          <div className="mt-28">
             <h1 className="text-4xl sm:text-5xl md:text-6xl leading-14 text-center font-bold mb-4 sm:mb-6 text-black"
               style={{
                 WebkitTextStroke: '39px #fcf4f4',
@@ -113,12 +113,13 @@ const SponsorPage = () => {
               }}>
               Sponsorship Opportunities
             </h1>
-            <p className="text-base sm:text-lg px-6 md:text-xl text-black/80 text-center mt-10 max-w-xl mx-auto">
+            <p className="text-base sm:text-lg px-6 md:text-xl text-gray-900 text-center mt-10 max-w-xl mx-auto">
               Join DevFest Abeokuta 2025 and be part of the most exciting tech event in the region
             </p>
 
             <CustomButton
-              href="#schedule"
+              // href="#schedule"
+              href="mailto:sponsors@devfestabeokuta.com?subject=Sponsorship Inquiry"
               label="Sponsor Us"
               icon={<Microphone size="24" color="#FF8A65" className='text-purple-400' />}
               // clor="#EA4335"
@@ -163,7 +164,7 @@ const SponsorPage = () => {
       {/* Why Sponsor Section */}
       <section className="general-space">
         <div className="mx-auto">
-          <div className="flex items-center justify-between my-18">
+          <div className="flex items-center justify-between mb-18">
             <div className="max-md:text-center ">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">Why Sponsor DevFest Abeokuta?</h2>
               <p className="text-base sm:text-lg text-white/80">Partner with us and unlock incredible opportunities</p>

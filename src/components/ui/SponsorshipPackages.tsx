@@ -267,10 +267,13 @@ const SponsorshipPackages = () => {
     return (
         <section
             ref={sectionRef}
-            className=" my-12 w-full p-10 max-md:p-4.5"
+            className=" my-12 w-full p-10 max-md:p-4.5 bg-[#f0f0f0] general-space rlative "
             aria-label="sponsorship packages"
         >
-            <div className="general-space bg-[#f0f0f0] [#f8d8d9] rounded-4xl container mx-auto w-full px-4 relative">
+
+
+            <div className=" [#f8d8d9] rounded-4xl container mx-auto w-full ">
+
 
                 <div className="text-center mb-12">
                     {/* <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-black">
@@ -283,7 +286,7 @@ const SponsorshipPackages = () => {
                     <TitleHead title="Packages" />
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6 sm:gap-8 mb-16">
+                <div className="grid md:grid-cols-3 gap-6 sm:gap-8 pt-6 pb-16  overflow-x-hidden overflow-y-visible">
 
                     {tiers.map((tier, i) => {
                         const IconComponent = tier.icon;
@@ -291,10 +294,10 @@ const SponsorshipPackages = () => {
                             <div
                                 key={tier.id}
                                 ref={(el: any) => (cardsRef.current[i] = el)}
-                                // className="relative will-change-transform transition-all duration-500 cursor-pointer group"
+                                className="relative cursor-pointer "
                                 style={{
                                     transformStyle: "preserve-3d",
-                                    perspective: 1200,
+                                    perspective: 100,
                                     WebkitTransformStyle: "preserve-3d",
                                 }}
                             >
@@ -345,14 +348,14 @@ const SponsorshipPackages = () => {
                                         </div>
 
                                         {/* Title */}
-                                        <h3 className="text-3xl lg:text-4xl font-bold text-white mb-2">
+                                        <h3 className="text-2xl lg:text-4xl font-bold text-white mb-2">
                                             {tier.title}
                                         </h3>
 
                                         {/* Price */}
                                         <div className="mb-8">
                                             <div className="flex items-baseline gap-1">
-                                                <span className="text-5xl lg:text-6xl font-extrabold text-white">
+                                                <span className="text-4xl lg:text-6xl font-extrabold text-white">
                                                     {tier.price}
                                                 </span>
                                             </div>
@@ -371,7 +374,7 @@ const SponsorshipPackages = () => {
                                                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                                         </svg>
                                                     </div>
-                                                    <span className="text-gray-300 text-sm leading-relaxed">{feature}</span>
+                                                    <span className="text-gray-300 text-xs md:text-sm leading-relaxed">{feature}</span>
                                                 </li>
                                             ))}
                                         </ul>
@@ -400,8 +403,9 @@ const SponsorshipPackages = () => {
 
                 </div>
 
-                <DoodleBg />
+
             </div>
+
         </section>
     );
 }
