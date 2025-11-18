@@ -1,9 +1,10 @@
+"use client"
+
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { Microphone, Moneys } from 'iconsax-react';
 import CustomButton from './CustomButton';
 import TitleHead from './TitleHead';
-import DoodleBg from './DoodleBg';
 import ComingSoonMask from './ComingSoonMask';
 
 export default function SponsorCTA() {

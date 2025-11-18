@@ -8,6 +8,7 @@ import { RiMenu2Line } from 'react-icons/ri'
 import { motion, AnimatePresence } from 'framer-motion'
 import InvertedCursor from '../ui/InvertedCursor'
 import gsap from 'gsap'
+import { useRouter } from 'next/navigation'
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -71,6 +72,7 @@ const NavBar = () => {
   // ${isMenuOpen ? 'max-md:bg-[#fcf4f4]' : 'max-md:bg-white/20'}
 
   const [active, setActive] = useState<number | null>(null)
+    const router = useRouter()
   return (
     <>
       <InvertedCursor />
@@ -84,7 +86,8 @@ const NavBar = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-        // className='bg-white/20 backdrop-blur-sm '
+          // className='bg-white/20 backdrop-blur-sm '
+          onClick={() =>  {window.location.href = '/'} }
         >
           <Image
             src='/./devfest-abklogo.png'
