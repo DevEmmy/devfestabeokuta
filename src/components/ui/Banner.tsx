@@ -159,7 +159,7 @@ const Banner = () => {
                   paintOrder: 'stroke markers fill',
                   textShadow: '42px 35x 4px rgba(0,0,0,0.3)',
                   WebkitTextStrokeColor: '#fcf4f4'
-                }}> <span className='text-[#fcf4f4] text-[4px] '>{"~"}</span>Devfest Abeokuta 25."</span>
+                }}> <span className='text-[#FCF6DF] [#fcf4f4] text-[4px] '>{"~"}</span>Devfest Abeokuta 25."</span>
               </span>
 
             </h1>

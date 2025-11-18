@@ -95,7 +95,7 @@ const PastEventsGallery = () => {
 
   const colors = ['#C3ECF6', '#F8D8D8', '#FCF6DF', '#CCF6C5']
   return (
-    <section className="bg-[#fcf4f4] ">
+    <section className="bg-[#fcf4f4] " id='gallery'>
       <div className='pb-12 sm:pb-20 sm:pt-10 px-4 bg-[#1e1e1e]  md:rounded-b-4xl'>
         <div className='general-space mx-auto mt-16'>
           {/* Section Header */}
@@ -107,7 +107,8 @@ const PastEventsGallery = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className='text-5xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-black border-amber-600 max-md:leading-[4rem]' style={{
+              <h2 className='text-5xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-black border-amber-600 max-md:leading-[4rem]' 
+              style={{
                 WebkitTextStroke: '39px #fcf4f4',
                 paintOrder: 'stroke markers fill',
                 textShadow: '42px 35x 4px rgba(0,0,0,0.3)',

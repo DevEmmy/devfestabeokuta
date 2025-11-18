@@ -50,7 +50,7 @@ const FAQ = () => {
   }
 
   return (
-    <section id="faq" className="py-56 px-4 min-h-screen relative ">
+    <section id="faq" className="py-56 px-4 min-h-screen relative">
 
       <div className='general-space '>
         <DoodleBg color='#f0f0f0' opacity={0.009} />
@@ -158,7 +158,7 @@ const FAQ = () => {
           </a>
         </div>
 
-        <Image src={'community.svg'} width={200} height={100} alt='community' className='absolute right-0 md:-left-29 -top-20' />
+        <Image src={'community.svg'} width={250} height={250} alt='community' className='absolute right-0 md:-left-29 -top-20' />
       </div>
     </section>
   )

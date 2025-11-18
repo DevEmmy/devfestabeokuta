@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { RiMenu2Line } from 'react-icons/ri'
 import { motion, AnimatePresence } from 'framer-motion'
 import InvertedCursor from '../ui/InvertedCursor'
+import gsap from 'gsap'
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -27,25 +28,45 @@ const NavBar = () => {
     {
       title: "Speakers",
       link: "/#speakers"
-    }
+    },
+    //     {
+    //   title: "Sponsors",
+    //   link: "/#sponsors"
+    // }
   ]
   const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (imageRef.current) {
-        imageRef.current?.classList.add("md:hidden");
+      if (!imageRef.current) return;
+
+      const width = window.innerWidth;
+
+      // Only animate on md screens and above
+      if (width < 768) return;
+
+      if (window.scrollY >= 10) {
+        // Animate OUT
+        gsap.to(imageRef.current, {
+          opacity: 0,
+          scale: 0.8,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      } else {
+        // Animate IN
+        gsap.to(imageRef.current, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          ease: "power2.out",
+        });
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
 
   // ${isMenuOpen ? 'max-md:bg-[#fcf4f4]' : 'max-md:bg-white/20'}
 
@@ -77,7 +98,7 @@ const NavBar = () => {
         </motion.div>
 
         {/* Desktop Navigation */}
-        <div className='hidden md:flex gap-6 xl:gap-10 items-center pr-3 pl-7 py-3 rounded-4xl bg-white/40 backdrop-blur-sm'>
+        <div className='hidden md:flex gap-6 xl:gap-8 items-center pr-3 pl-7 py-3 rounded-4xl bg-white/40 backdrop-blur-sm'>
           {nav.map((item, index) => (
             <motion.div
               key={index}
