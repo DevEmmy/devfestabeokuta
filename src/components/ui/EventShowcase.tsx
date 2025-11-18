@@ -3,6 +3,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GetTicketButton from "./GetTicketButton";
 
+import Image from "next/image";
+
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
@@ -130,12 +132,12 @@ const EventShowcase: React.FC = () => {
       image: "/past1.jpg",
     },
     {
-      title: "Hackathon",
+      title: "Panel Sessions",
       bgImage:
         "linear-gradient(135deg, rgba(186,230,186,0.6), rgba(144,238,144,0.4))",
       textColor: "text-green-600",
       size: "small",
-      image: "/hackathon.jpg",
+      image: "/speaker4.jpg",
     },
     {
       title: "Private Network",
@@ -159,7 +161,7 @@ const EventShowcase: React.FC = () => {
                 key={index}
                 ref={addCardRef}
                 className={`
-                  relative overflow-hidden rounded-2xl cursor-pointer group 
+                  relative overflow-hidden rounded-2xl cursor-pointer group
                   transition-all duration-300 border-[12px] md:border-[24px] border-spacing-x-12 border-[#1e1e1e]/90 border-double
                 
                   ${index === 0 && "row-span-2"}
@@ -173,10 +175,12 @@ const EventShowcase: React.FC = () => {
                 }}
               >
                 {/* Background Image */}
-                <img
+                <Image
                   src={event.image}
                   alt={event.title}
-                  className="absolute inset-0 h-full w-auto min-h-[250px] object-cover scale-150"
+                  width={10000}
+                  height={10000}
+                  className="absolute inset-0 min-h-[250px] object-cover object-bottom scale-150"
                 />
 
                 {/* Title */}

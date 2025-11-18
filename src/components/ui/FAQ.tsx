@@ -158,7 +158,7 @@ const FAQ = () => {
           </a>
         </div>
 
-        <Image src={'community.svg'} width={250} height={250} alt='community' className='absolute right-0 md:-left-29 -top-20' />
+        <Image src={'/community.svg'} width={250} height={250} alt='community' className='absolute right-0 md:-left-29 -top-30' />
       </div>
     </section>
   )
