@@ -90,10 +90,10 @@ const Speaker = () => {
 
 
                 <CustomButton
-                    href="#schedule"
                     label="Apply to speak"
                     icon={<Microphone size="24" color="#EA4335" className='text-purple-400' />}
                     className="px-4 py-3 text-white bg-black mx-auto mb-10 hover:bg-[#374151] hover:text-gray-200"
+                    disabled={true}
                 />
 
             </div>

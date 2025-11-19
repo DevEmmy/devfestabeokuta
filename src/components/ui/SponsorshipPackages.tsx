@@ -9,7 +9,8 @@ import { MdArrowOutward } from "react-icons/md";
 import { GiLaurelCrown } from "react-icons/gi";
 import { LiaAwardSolid } from "react-icons/lia";
 import { TbShieldCode } from "react-icons/tb";
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,6 +73,8 @@ const tiers = [
 
 
 const SponsorshipPackages = () => {
+
+    const router = useRouter()
     const sectionRef = useRef<HTMLElement | null>(null);
     const cardsRef = useRef<Array<HTMLDivElement | null>>([]);
     const tiltDataRef = useRef<
@@ -300,6 +303,8 @@ const SponsorshipPackages = () => {
                                     perspective: 100,
                                     WebkitTransformStyle: "preserve-3d",
                                 }}
+                                onClick={() => router.push('https://docs.google.com/forms/d/e/1FAIpQLSechcUtAOXfjxoldUyELqSQmwxMvuiiJ0KHxTtChs2CPPrA3A/viewform')}
+
                             >
                                 {/* Popular badge */}
                                 {tier.popular && (
@@ -380,8 +385,11 @@ const SponsorshipPackages = () => {
                                         </ul>
 
                                         {/* CTA Button */}
-                                        <button
-                                            className="w-fit px-4 py-4 rounded-4xl font-semibold text-white transition-all duration-300 relative overflow-hidden group/btn shadow-lg hover:shadow-xl"
+
+
+                                        <button onClick={() => router.push('https://docs.google.com/forms/d/e/1FAIpQLSechcUtAOXfjxoldUyELqSQmwxMvuiiJ0KHxTtChs2CPPrA3A/viewform')}
+                                            aria-label={`Select ${tier.title} sponsorship package`}
+                                            className="w-fit px-4 py-4 rounded-4xl font-semibold text-white transition-all duration-300 relative overflow-hidden  shadow-lg hover:shadow-xl"
                                             style={{
                                                 background: `linear-gradient(135deg, ${tier.accentColor}, ${tier.accentColor}cc)`,
                                             }}
@@ -389,6 +397,7 @@ const SponsorshipPackages = () => {
                                             <span className="relative z-10"><MdArrowOutward /></span>
                                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover/btn:translate-x-[200%] transition-transform duration-700" />
                                         </button>
+
 
                                         {/* Decorative orbs */}
                                         <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full blur-3xl opacity-30"

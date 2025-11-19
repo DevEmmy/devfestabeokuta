@@ -11,6 +11,7 @@ interface CustomButtonProps {
   icon?: React.ReactNode;
   className?: string;
   target?: "_blank" | "_self";
+  disabled?: boolean
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -19,6 +20,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   icon,
   className = "",
   target = "_self",
+  disabled = false
 }) => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
@@ -83,6 +85,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       <button
         ref={btnRef}
         className={`${className} px-6 sm:px-8 lg:px-10 py-3 sm:py-4  rounded-full flex items-center gap-2 cursor-pointer text-sm lg:text-xl md:font-semibold sm:text-base transition-all duration-300`}
+        disabled={disabled}
       >
         {icon && <span className="mr-2 flex items-center" >{icon}</span>}
 
