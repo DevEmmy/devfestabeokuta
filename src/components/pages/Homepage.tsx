@@ -27,7 +27,7 @@ const Homepage = () => {
 
         
 
-        {/* <AttendeeCardGenerator /> */}
+        <AttendeeCardGenerator />
 
         <Gif />
 

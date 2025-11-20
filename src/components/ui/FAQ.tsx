@@ -46,7 +46,7 @@ const FAQ = () => {
   }
 
   return (
-    <section id="faq" className="py-16 sm:py-20 px-4 bg-[#f0f0f0]">
+    <section id="faq" className="py-16 sm:py-20 lg:px-[20%] mx-auto px-4 bg-[#f0f0f0]">
       <div className="max-w-7xl mx-auto">
         <motion.div 
           className="text-center mb-12"
