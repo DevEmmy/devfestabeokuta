@@ -3,6 +3,10 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+import Image from 'next/image'
+import OrbitalAnimation from './OrbitalAnimation'
+import DoodleBg from './DoodleBg'
+
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
@@ -46,17 +50,37 @@ const FAQ = () => {
   }
 
   return (
-    <section id="faq" className="py-16 sm:py-20 lg:px-[20%] mx-auto px-4 bg-[#f0f0f0]">
-      <div className="max-w-7xl mx-auto">
-        <motion.div 
-          className="text-center mb-12"
+    <section id="faq" className="py-56 px-4 min-h-screen relative">
+
+      <div className='general-space '>
+        <DoodleBg color='#f0f0f0' opacity={0.009} />
+        <div className="flex items-start justify-between">
+          <div className='max-w-xl relative mb-24 flex flex-col gap-8 z-10'>
+            <h3 className='text-6xl font-medium leading-20 text-yellow-600 [#ffe7a5]' style={{
+              WebkitTextStroke: '39px #fcf4f4',
+              paintOrder: 'stroke markers fill',
+              textShadow: '42px 35x 4px rgba(0,0,0,0.3)',
+              WebkitTextStrokeColor: '#f0f0f0'
+            }}>Stay Connected with GDG Abeokuta</h3>
+            <p className='text-[#fffcfc] leading-loose max-md:mt-10 md:text-lg'>
+              Discover our latest activities, events, and webinars. Be the first to get updates on everything happening in the GDG Abeokuta community.
+            </p>
+          </div>
+
+          <OrbitalAnimation />
+        </div>
+      </div>
+
+      <div className="bg-[#f0f0f0]  border-12 border-[#4285f4] [#f6b51e] max-w-3xl w-full  p-8 rounded-2xl mx-auto relative ">
+        <motion.div
+          className="text-center my-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-black">
-            Frequently Asked Questions
+            Got Questions? We’ve Got Answers!
           </h2>
           <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto">
             Have questions? We've got answers. Find everything you need to know about DevFest Abeokuta 2025.
@@ -64,7 +88,7 @@ const FAQ = () => {
         </motion.div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {faqs.splice(0, 5).map((faq, index) => (
             <motion.div
               key={index}
               className="bg-white rounded-xl border-2 border-black overflow-hidden"
@@ -75,9 +99,9 @@ const FAQ = () => {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-black"
+                className="w-full px-3 md:px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-black"
               >
-                <h3 className="text-lg sm:text-xl font-bold text-black pr-4">
+                <h3 className="max-md:text-base text-lg sm:text-xl font-bold text-black pr-4">
                   {faq.question}
                 </h3>
                 <motion.svg
@@ -96,7 +120,7 @@ const FAQ = () => {
                   />
                 </motion.svg>
               </button>
-              
+
               <AnimatePresence>
                 {openIndex === index && (
                   <motion.div
@@ -133,6 +157,8 @@ const FAQ = () => {
             </svg>
           </a>
         </div>
+
+        <Image src={'/community.svg'} width={250} height={250} alt='community' className='absolute right-0 md:-left-29 -top-30' />
       </div>
     </section>
   )
