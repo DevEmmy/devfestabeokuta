@@ -4,6 +4,10 @@ import React, { useState, useRef } from 'react'
 import Image from 'next/image'
 import html2canvas from "html2canvas";
 
+const PREVIEW_BACKGROUND = '#f9fafb'
+const HTML2CANVAS_TIMEOUT_MS = 12000
+const FONT_READY_TIMEOUT_MS = 6000
+
 const AttendeeCardGenerator = () => {
     const [userImage, setUserImage] = useState<string | null>(null)
     const [userName, setUserName] = useState('')
@@ -20,6 +24,40 @@ const AttendeeCardGenerator = () => {
         '#f8d8d8',
         '#ffe7a5'
     ]
+
+    const withTimeout = <T,>(promise: Promise<T>, timeout: number, timeoutMessage: string) => {
+        return new Promise<T>((resolve, reject) => {
+            const timer = setTimeout(() => {
+                reject(new Error(timeoutMessage))
+            }, timeout)
+
+            promise
+                .then((value) => {
+                    clearTimeout(timer)
+                    resolve(value)
+                })
+                .catch((error) => {
+                    clearTimeout(timer)
+                    reject(error)
+                })
+        })
+    }
+
+    const waitForFonts = async () => {
+        if (typeof document === 'undefined') return
+        const fontSet = document.fonts
+        if (!fontSet || fontSet.status === 'loaded') return
+
+        try {
+            await withTimeout(
+                fontSet.ready,
+                FONT_READY_TIMEOUT_MS,
+                'Font loading timed out'
+            )
+        } catch (error) {
+            console.warn('Continuing without waiting for fonts:', error)
+        }
+    }
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
@@ -77,6 +115,86 @@ const AttendeeCardGenerator = () => {
         }
     }
 
+    const scrubOklchColors = (clonedDoc: Document) => {
+        const styleSheets = clonedDoc.styleSheets;
+        for (let i = 0; i < styleSheets.length; i++) {
+            try {
+                const rules = styleSheets[i].cssRules || styleSheets[i].rules;
+                if (!rules) continue;
+                for (let j = 0; j < rules.length; j++) {
+                    const rule = rules[j] as CSSRule & { style?: CSSStyleDeclaration };
+                    if (!rule.style) continue;
+                    for (let k = 0; k < rule.style.length; k++) {
+                        const prop = rule.style[k];
+                        const value = rule.style.getPropertyValue(prop);
+                        if (value && value.includes('oklch')) {
+                            rule.style.setProperty(prop, 'rgb(229, 231, 235)', 'important');
+                        }
+                    }
+                }
+            } catch (e) {
+                // Cross-origin stylesheets will throw
+            }
+        }
+
+        const clonedGetComputedStyle = clonedDoc.defaultView?.getComputedStyle;
+        if (clonedGetComputedStyle && clonedDoc.defaultView) {
+            clonedDoc.defaultView.getComputedStyle = function (el: Element, pseudo?: string | null) {
+                const styles = clonedGetComputedStyle.call(this, el, pseudo);
+                const proxy = new Proxy(styles, {
+                    get(target, prop) {
+                        const value = target[prop as keyof typeof target];
+                        if (typeof value === 'string' && value.includes('oklch')) {
+                            return 'rgb(229, 231, 235)';
+                        }
+                        return value;
+                    }
+                });
+                return proxy;
+            };
+        }
+    };
+
+    const captureCardImage = async (target: HTMLElement) => {
+        await waitForFonts();
+
+        const options: Parameters<typeof html2canvas>[1] = {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: PREVIEW_BACKGROUND,
+            logging: false,
+            allowTaint: true,
+            imageTimeout: HTML2CANVAS_TIMEOUT_MS,
+            onclone: scrubOklchColors
+        };
+
+        const canvas = await withTimeout(
+            html2canvas(target, options),
+            HTML2CANVAS_TIMEOUT_MS + 2000,
+            'html2canvas timed out'
+        );
+
+        return canvas.toDataURL('image/png');
+    };
+
+    const getDownloadFileName = () => {
+        const sanitized = userName
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9-_]/g, '');
+        return `devfest-abeokuta-${sanitized || 'attendee'}.png`;
+    };
+
+    const triggerDownload = (dataUrl: string) => {
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = getDownloadFileName();
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     const handleDownload = async (): Promise<boolean> => {
         const element = document.getElementById("capture");
         if (!element) return false;
@@ -84,62 +202,8 @@ const AttendeeCardGenerator = () => {
         setIsGenerating(true);
 
         try {
-            const canvas = await html2canvas(element, {
-                scale: 2,
-                useCORS: true,
-                backgroundColor: '#f9fafb',
-                logging: false,
-                allowTaint: true,
-                onclone: (clonedDoc) => {
-                    // Remove any oklch colors from cloned document
-                    const styleSheets = clonedDoc.styleSheets;
-                    for (let i = 0; i < styleSheets.length; i++) {
-                        try {
-                            const rules = styleSheets[i].cssRules || styleSheets[i].rules;
-                            for (let j = 0; j < rules.length; j++) {
-                                const rule = rules[j] as any;
-                                if (rule.style) {
-                                    for (let k = 0; k < rule.style.length; k++) {
-                                        const prop = rule.style[k];
-                                        const value = rule.style.getPropertyValue(prop);
-                                        if (value && value.includes('oklch')) {
-                                            rule.style.setProperty(prop, 'rgb(229, 231, 235)', 'important');
-                                        }
-                                    }
-                                }
-                            }
-                        } catch (e) {
-                            // Cross-origin stylesheets will throw
-                        }
-                    }
-
-                    // Also patch getComputedStyle in the cloned document
-                    const clonedGetComputedStyle = clonedDoc.defaultView?.getComputedStyle;
-                    if (clonedGetComputedStyle && clonedDoc.defaultView) {
-                        clonedDoc.defaultView.getComputedStyle = function (el: Element, pseudo?: string | null) {
-                            const styles = clonedGetComputedStyle.call(this, el, pseudo);
-                            const proxy = new Proxy(styles, {
-                                get(target, prop) {
-                                    const value = target[prop as keyof typeof target];
-                                    if (typeof value === 'string' && value.includes('oklch')) {
-                                        return 'rgb(229, 231, 235)';
-                                    }
-                                    return value;
-                                }
-                            });
-                            return proxy;
-                        };
-                    }
-                }
-            });
-
-            const image = canvas.toDataURL("image/png");
-            const link = document.createElement("a");
-            link.href = image;
-            link.download = `devfest-abeokuta-${userName.replace(/\s+/g, '-').toLowerCase()}.png`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            const image = await captureCardImage(element as HTMLElement);
+            triggerDownload(image);
             return true;
         } catch (err) {
             console.error("Capture failed:", err);
