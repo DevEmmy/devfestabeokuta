@@ -23,7 +23,7 @@ const Homepage: FC = () => {
       <Agenda />
       <Speaker />
       <SponsorCTA />
-      {/* <AttendeeCardGenerator /> */}
+      <AttendeeCardGenerator />
       <Gif />
       <FAQ />
       <Footer />

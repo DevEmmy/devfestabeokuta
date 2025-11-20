@@ -77,9 +77,11 @@ const AttendeeCardGenerator = () => {
         }
     }
 
-    const handleDownload = async () => {
+    const handleDownload = async (): Promise<boolean> => {
         const element = document.getElementById("capture");
-        if (!element) return;
+        if (!element) return false;
+
+        setIsGenerating(true);
 
         try {
             const canvas = await html2canvas(element, {
@@ -138,27 +140,33 @@ const AttendeeCardGenerator = () => {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            return true;
         } catch (err) {
             console.error("Capture failed:", err);
             alert("Failed to generate image. Please try again.");
+            return false;
         } finally {
-
+            setIsGenerating(false);
         }
     };
 
+    const handleShare = async () => {
+        if (!userImage || !userName.trim()) return
 
+        // handleDownload handles the isGenerating state
+        const success = await handleDownload()
+        if (success) {
+            const text = `I'm attending DevFest Abeokuta 2025! 🚀\n\nJoin me and the amazing community. Generate your personalized DP here 👇\n`
+            const hashtags = 'DevFestAbeokuta,DevFestAbk2025,GDGAbeokuta'
+            const shareUrl = typeof window !== 'undefined' ? window.location.href : 'https://devfestabeokuta.com/#attendee-card-generator \n'
 
-
-    const resetCard = () => {
-        setUserImage(null)
-        setUserName('')
-        if (fileInputRef.current) {
-            fileInputRef.current.value = ''
+            const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&hashtags=${hashtags}&url=${encodeURIComponent(shareUrl)}`
+            window.open(twitterIntentUrl, '_blank')
         }
-    }
+    };
 
     return (
-        <div className='py-16 sm:py-20 px-4 bg-[#f8d8d9]'>
+        <div className='py-16 sm:py-20 px-4 bg-[#f8d8d9]' id='attendee-card-generator'>
             <div className='max-w-7xl mx-auto'>
                 {/* Section Header */}
                 <div className='text-center mb-8 sm:mb-12'>
@@ -265,7 +273,7 @@ const AttendeeCardGenerator = () => {
                                          onClick={() => setCardColor(color)}
                                          className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full border-none transition-all ${
                                              cardColor === color
-                                                 ? 'border-black border scale-110'
+                                                 ? 'border-black !border scale-110'
                                                  : 'border-none hover:border-gray-400'
                                          }`}
                                          style={{ backgroundColor: color }}
@@ -285,16 +293,23 @@ const AttendeeCardGenerator = () => {
                                 {isGenerating ? 'Generating...' : 'Generate Card'}
                             </button>
                             <button
-                                onClick={resetCard}
+                                onClick={() => {
+                                    if (fileInputRef.current) {
+                                        fileInputRef.current.value = ''
+                                    }
+                                    setUserImage(null)
+                                    setUserName('')
+                                    setCardColor('#f0f0f0')
+                                }}
                                 className='px-4 sm:px-6 py-2 sm:py-3 border-2 border-black rounded-lg hover:bg-gray-100 transition-colors font-semibold text-sm sm:text-base'
                             >
-                                Reset
+                                Clear
                             </button>
                         </div>
                     </div>
 
                     {/* Preview Section */}
-                    <div className='bg-white rounded-xl sm:rounded-2xl border-2 border-black p-6 sm:p-8'>
+                    <div className=''>
                         <h3 className='text-xl sm:text-2xl font-bold mb-4 sm:mb-6'>Preview</h3>
                          <div id="capture" style={{
                              backgroundColor: '#f9fafb',
@@ -319,22 +334,22 @@ const AttendeeCardGenerator = () => {
                                  
                              }}>
                                 {/* Top Section */}
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
-                                    <img src='/./devfest-abklogo.png' alt='DevFest' style={{ width: '100%', height: 'auto', display: 'block' }} />
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '10px' }}>
+                                    <img src='/./devfest-abklogo.png' alt='DevFest' style={{ width: 'auto', height: '60px', display: 'block', objectFit: 'contain' }} />
 
                              
                                 </div>
 
                                  {/* Main Content */}
-                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                                 <div className="grid grid-cols-2 gap-4 items-center">
                                      {/* Left - Text Content */}
-                                     <div className="flex flex-col gap-3">
+                                     <div className="flex flex-col gap-1">
                                          <div>
                                              <p className="text-sm mb-1">I will be attending</p>
-                                             <h1 className="text-2xl md:text-3xl font-bold leading-tight">DevFest <br />ABEOKUTA <br />2025</h1>
+                                             <h1 className="text-xl md:text-3xl font-bold leading-tight">DevFest <br className='block md:hidden' />ABEOKUTA <br className='block md:hidden' />2025</h1>
                                          </div>
                                          <div>
-                                             <p className="font-semibold text-base">{userName || 'Firstname Lastname'}</p>
+                                             <p className="font-semibold text-base">{userName || 'Firstname'}</p>
                                              <p className="text-sm">Dec 6th</p>
                                          </div>
                                      </div>
@@ -385,7 +400,11 @@ const AttendeeCardGenerator = () => {
                 <div className='mt-8 sm:mt-12 text-center'>
                     <p className='text-base sm:text-lg font-semibold mb-3 sm:mb-4'>Share your attendance with the community!</p>
                     <div className='flex justify-center gap-3 sm:gap-4'>
-                        <button className='bg-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-gray-800 transition-colors flex items-center gap-2 text-sm sm:text-base'>
+                        <button
+                            onClick={handleShare}
+                            disabled={isGenerating || !userImage || !userName.trim()}
+                            className='bg-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-gray-800 transition-colors flex items-center gap-2 text-sm sm:text-base disabled:bg-gray-400 disabled:cursor-not-allowed'
+                        >
                             <svg className='w-4 h-4 sm:w-5 sm:h-5' fill='currentColor' viewBox='0 0 24 24'>
                                 <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' />
                             </svg>
