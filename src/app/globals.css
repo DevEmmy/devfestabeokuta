@@ -82,3 +82,10 @@ h6 {
     min-width: 44px;
   }
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}

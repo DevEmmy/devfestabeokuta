@@ -11,6 +11,7 @@ import AttendeeCardGenerator from '../ui/AttendeeCardGenerator'; // This is stil
 import Footer from '../ui/Footer';
 import Gif from '../ui/Gif';
 import Speaker from '../ui/Speaker';
+import MerchCTA from '../ui/MerchCTA';
 
 
 const Homepage: FC = () => {
@@ -22,6 +23,7 @@ const Homepage: FC = () => {
       <PastEventsGallery />
       <Agenda />
       <Speaker />
+      <MerchCTA />
       <SponsorCTA />
       <AttendeeCardGenerator />
       <Gif />
