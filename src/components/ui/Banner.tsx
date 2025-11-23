@@ -6,7 +6,7 @@ import { gsap } from 'gsap'
 import DoodleRain from './DoodleRain'
 import DoodleBg from './DoodleBg'
 import CustomButton from './CustomButton'
-import { Microphone } from 'iconsax-react'
+import { Microphone, Moneys } from 'iconsax-react'
 
 const Banner = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -184,13 +184,19 @@ const Banner = () => {
               Apply to speak
             </button> */}
 
-            <CustomButton
+            {/* <CustomButton
               href="#schedule"
               label="Apply to speak"
               icon={<Microphone size="24" color="#FF8A65" className='text-purple-400' />}
-              // clor="#EA4335"
               className="px-4 py-3 bg-white border border-black text-black"
               disabled
+            /> */}
+
+            <CustomButton
+              href="/sponsor"
+              label="Sponsor Us"
+              icon={<Moneys size="24" color="#FF8A65" />}
+              className="px-4 py-3 bg-white border border-black text-black "
             />
 
             {/* <CustomButton icon={ } label='Apply to speak' className='bg-white border border-black text-black px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full flex items-center gap-2 text-sm sm:text-base w-fit sm:w-auto justify-center' /> */}

@@ -24,49 +24,49 @@ export default function MerchCTA() {
     const merchItems: MerchItem[] = [
         {
             name: "Black Face Cap",
-            price: "₦10,000",
+            price: "₦3,000",
             src: "/merch1.jpg",
             link: "https://devfestabeokutamerch.zigaarastore.com/product/black-face-cap-82"
         },
         {
             name: "White Face Cap",
-            price: "₦10,000",
+            price: "₦3,000",
             src: "/merch2.jpg",
             link: "https://devfestabeokutamerch.zigaarastore.com/product/white-face-cap-81"
         },
-        {
-            name: "Notebook / Notepad",
-            price: "₦10,000",
-            src: "/merch3.jpg",
-            link: "https://devfestabeokutamerch.zigaarastore.com/product/notebook-notepad-80"
-        },
-        {
-            name: "Coffee Mug",
-            price: "₦10,000",
-            src: "/merch4.jpg",
-            link: "https://devfestabeokutamerch.zigaarastore.com/product/coffee-mug-79"
-        },
+        // {
+        //     name: "Notebook / Notepad",
+        //     price: "₦10,000",
+        //     src: "/merch3.jpg",
+        //     link: "https://devfestabeokutamerch.zigaarastore.com/product/notebook-notepad-80"
+        // },
+        // {
+        //     name: "Coffee Mug",
+        //     price: "₦10,000",
+        //     src: "/merch4.jpg",
+        //     link: "https://devfestabeokutamerch.zigaarastore.com/product/coffee-mug-79"
+        // },
         {
             name: "Black Hoodie",
-            price: "₦10,000",
+            price: "₦11,000",
             src: "/merch5.jpg",
             link: "https://devfestabeokutamerch.zigaarastore.com/product/black-hoodie-78"
         },
-        {
-            name: "White Totshop/black-shirte Bag",
-            price: "₦10,000",
-            src: "/merch6.jpg",
-            link: "https://devfestabeokutamerch.zigaarastore.com/product/white-tote-bag-77"
-        },
-        {
-            name: "Black Tote Bag",
-            price: "₦10,000",
-            src: "/merch7.jpg",
-            link: "https://devfestabeokutamerch.zigaarastore.com/product/black-tote-bag-76"
-        },
+        // {
+        //     name: "White Totshop/black-shirte Bag",
+        //     price: "₦10,000",
+        //     src: "/merch6.jpg",
+        //     link: "https://devfestabeokutamerch.zigaarastore.com/product/white-tote-bag-77"
+        // },
+        // {
+        //     name: "Black Tote Bag",
+        //     price: "₦10,000",
+        //     src: "/merch7.jpg",
+        //     link: "https://devfestabeokutamerch.zigaarastore.com/product/black-tote-bag-76"
+        // },
         {
             name: "Black T-Shirt",
-            price: "₦10,000",
+            price: "₦5,500",
             src: "/merch8.jpg",
             link: "https://devfestabeokutamerch.zigaarastore.com/product/black-t-shirt-75"
         }
@@ -123,7 +123,7 @@ export default function MerchCTA() {
     };
 
     return (
-        <div className="min-h-screen bg-[#fcf4f4] flex items-center justify-center py-10 " id="merch">
+        <div className="min-h-screen bg-[#fcf4f4] flex items-center justify-center pb-10 " id="merch">
             <div className="general-space w-full relative">
 
                 <div ref={headerRef}>
@@ -134,7 +134,7 @@ export default function MerchCTA() {
 
                 <div
                     ref={itemsRef}
-                    className="flex sm:flex-row md:grid md:grid-cols-4 gap-6 py-10 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory scroll-smooth px-4 sm:px-6 no-scrollbar"
+                    className="flex sm:flex-row md:grid md:grid-cols-4 gap-6 mb-10 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory scroll-smooth px-4 sm:px-6 no-scrollbar"
                 >
                     {merchItems.map((item, i) => (
                         <div

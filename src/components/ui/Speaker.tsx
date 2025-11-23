@@ -48,7 +48,7 @@ const Speaker = () => {
 
 
                 <ComingSoonMask>
-                    <div className='grid grid-cols-1 md:grid-cols-3 md:gap-10 max-md:gap-20'>
+                    <div className='grid grid-cols-1 md:grid-cols-3 md:gap-10 max-md:gap-20 mb-9'>
                         {
                             speakerCards.map((item: any, i: number) => (
                                 <div className={`${item.background} p-3 max-md:mb-7 border-3 border-[#1e1e1e] rounded-lg relative ${i > 0 && 'max-md:hidden'}`} key={i}>
@@ -89,12 +89,12 @@ const Speaker = () => {
 
 
 
-                <CustomButton
+                {/* <CustomButton
                     label="Apply to speak"
                     icon={<Microphone size="24" color="#EA4335" className='text-purple-400' />}
                     className="px-4 py-3 text-white bg-black mx-auto mb-10 hover:bg-[#374151] hover:text-gray-200"
                     disabled={true}
-                />
+                /> */}
 
             </div>
         </section>
